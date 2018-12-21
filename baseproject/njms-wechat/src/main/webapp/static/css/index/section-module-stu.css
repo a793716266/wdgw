@@ -1,0 +1,207 @@
+.stulist {
+	width: 100%;
+}
+
+.stulist li, .courselist li {
+	width: 286px;
+	border-radius: 10px;
+	cursor: pointer;
+	overflow: hidden;
+	position: relative;
+	transition: all 0.2s;
+}
+
+.stulist li {
+	height: 350px;
+}
+
+.stulist li:hover, .courselist li:hover {
+	box-shadow: #E4E8CF -7px 7px 15px, #E4E8CF 7px 7px 15px;
+	margin-top: -10px;
+}
+
+.stulist li .stupic {
+	width: 100%;
+	height: 50%;
+	background-size: 286px 273px;
+	overflow: hidden;
+	transition: all 0.5s;
+	overflow: hidden;
+	position: relative;
+}
+
+.stulist li .stupic:hover {
+	height: 80%;
+	background-size: 310px 295px;
+	background-position: -10px 0px;
+}
+
+.stulist li .stupic:hover .btn-play-sm {
+	display: none;
+}
+
+.stulist li .stupic .btn-play-sm {
+	width: 52px;
+	height: 52px;
+	background: url(../../img/index/btn-play-sm.png) no-repeat center center;
+	background-size: 115% 115%;
+	border-radius: 50%;
+	margin-top: 105px;
+	margin-left: 20px;
+}
+
+.stulist li .stuinfo {
+	width: 100%;
+	height: 50%;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.stulist li .stuinfo .stubaseinfo {
+	height: 35%;
+	border-bottom: 2px solid #EFEFEF;
+}
+
+.stulist li .stuinfo .stubaseinfo .stubaseinfo-top {
+	margin-top: 10px;
+	line-height: 20px;
+}
+
+.stulist li .stuinfo .stubaseinfo .stubaseinfo-top .stuname {
+	color: #000;
+	margin-left: 5%;
+}
+
+.stulist li .stuinfo .stubaseinfo .stubaseinfo-top .stusalary {
+	color: #ABABAB;
+	margin-right: 5%;
+}
+
+.stulist li .stuinfo .stubaseinfo .stubaseinfo-bottom {
+	margin-top: 5px;
+	color: #ABABAB;
+	margin-left: 5%;
+}
+
+.stulist li .stuinfo .stuwords .stuwords-text {
+	width: 90%;
+	margin-left: 5%;
+	height: 80px;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	word-break: break-all;
+	margin-top: 5px;
+}
+
+.stulist li .stupic .shade {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	background: rgba(0, 0, 0, .0);
+	color: #DDDDE;
+	text-align: center;
+	transition: all 0.5s;
+}
+
+.stulist li .stupic .shade * {
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+.stulist li .stupic:hover .shade {
+	background: rgba(0, 0, 0, .4);
+}
+
+.stulist li .stupic:hover .shade * {
+	opacity: 1;
+}
+
+.stulist li .stupic .shade .btn-play-lg {
+	width: 80px;
+	height: 80px;
+	background: url(../../img/index/btn-play-lg.png) no-repeat center center;
+	background-size: 105% 105%;
+	border-radius: 50%;
+	transition: all 0.3s;
+	margin-top: calc(50% - 40px);
+	margin-left: calc(50% - 40px);
+}
+
+.stulist li .shade .btn-play-lg:hover {
+	width: 90px;
+	height: 90px;
+	margin-top: calc(50% - 45px);
+	margin-left: calc(50% - 45px);
+}
+
+.stulist li .shade .text-play {
+	font-size: 16px;
+	color: #DDDDDE;
+	position: absolute;
+	width: 80px;
+	bottom: 60px;
+	left: calc(50% - 40px);
+}
+
+.stulist li .shade .text-play:hover {
+	color: orangered;
+}
+
+.video-btn {
+	position: absolute;
+	width: 800px;
+	height: 580px;
+	background: black;
+	top: 50px;
+	left: 0px;
+	right: 0px;
+	margin: 100px auto;
+	display: none;
+	z-index: 101;
+	cursor: pointer;
+}
+
+.video-area {
+	width: 100%;
+	height: 100%;
+	background: black;
+}
+
+iframe {
+	width: 100%;
+	height: 100%;
+}
+
+.video-shut {
+	height: 25px;
+	width: 25px;
+	border-radius: 12.5px;
+	font-size: medium;
+	color: black;
+	float: left;
+	text-align: center;
+	font-weight: bolder;
+	background: white;
+	display: block;
+	position: absolute;
+	top: -15px;
+	right: -15px;
+}
+
+#shadow {
+	position: absolute;
+	opacity: 0.5;
+	filter: alpha(opacity = 50);
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	background: black;
+	z-index: 100;
+	height: 100%;
+	display: none;
+}

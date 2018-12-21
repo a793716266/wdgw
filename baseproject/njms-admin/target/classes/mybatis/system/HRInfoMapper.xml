@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HRInfoMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		WDGW_HRINFO
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		HEADPORTRAIT,	
+		HR_NAME,	
+		EVALUATION,	
+		HR_POSITION,	
+		CREATETIME,	
+		CREATEUSER,	
+		REMARKS,
+		LOGO,	
+		HRINFO_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{HEADPORTRAIT},	
+		#{HR_NAME},	
+		#{EVALUATION},	
+		#{HR_POSITION},	
+		#{CREATETIME},	
+		#{CREATEUSER},	
+		#{REMARKS},	
+		#{LOGO},
+		#{HRINFO_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			HRINFO_ID = #{HRINFO_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			HEADPORTRAIT = #{HEADPORTRAIT},
+			HR_NAME = #{HR_NAME},
+			EVALUATION = #{EVALUATION},
+			HR_POSITION = #{HR_POSITION},
+			CREATETIME = #{CREATETIME},
+			CREATEUSER = #{CREATEUSER},
+			REMARKS = #{REMARKS},
+			LOGO = #{LOGO},
+		HRINFO_ID = HRINFO_ID
+		where 
+		HRINFO_ID = #{HRINFO_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			HRINFO_ID = #{HRINFO_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<!-- 开始到结束时间 -->
+		<if test="pd.lastEnd!= null and pd.lastEnd != '' and pd.lastStart!= null and pd.lastStart != ''"><!-- 关键词检索 -->
+			and CREATETIME between #{pd.lastStart} and #{pd.lastEnd}
+		</if>
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and HR_NAME LIKE CONCAT('%', #{pd.keywords},'%')
+		</if>
+		<!-- 开始时间 -->
+		<if test="pd.lastStart!= null and pd.lastStart != ''"><!-- 关键词检索 -->
+			and  CREATETIME >= #{pd.lastStart}
+		</if>
+		<!-- 结束时间 -->
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''"><!-- 关键词检索 -->
+			and  CREATETIME &lt;= #{pd.lastEnd}
+		</if>
+		order by CREATETIME DESC
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<!-- 开始到结束时间 -->
+		<if test="lastEnd!= null and lastEnd != '' and lastStart!= null and lastStart != ''"><!-- 关键词检索 -->
+			and CREATETIME between #{lastStart} and #{lastEnd}
+		</if>
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
+			and HR_NAME LIKE CONCAT('%', #{keywords},'%')
+		</if>
+		<!-- 开始时间 -->
+		<if test="lastStart!= null and lastStart != ''"><!-- 关键词检索 -->
+			and  CREATETIME >= #{lastStart}
+		</if>
+		<!-- 结束时间 -->
+		<if test="lastEnd!= null and lastEnd != ''"><!-- 关键词检索 -->
+			and  CREATETIME &lt;= #{lastEnd}
+		</if>
+		order by CREATETIME DESC
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			HRINFO_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

@@ -1,0 +1,221 @@
+#teachers{
+	height: 440px;
+}
+#teachers .swiper-button{
+	background-size: 100% 100%;
+	transition: background-image 0.3s;
+	width: 40px;
+	height: 40px;
+	z-index: 9999;
+	top: auto;
+}
+#teachers .swiper-button-prev{
+	left:358px;
+	top:10px;
+	background-image: url(../../img/index/point-prev.png);
+}
+#teachers .swiper-button-prev:hover{
+	background-image: url(../../img/index/point-prev-hover.png);
+}
+#teachers .swiper-button-next{
+	right:358px;
+	bottom:-6px;
+	background-image: url(../../img/index/point-next.png);
+}
+#teachers .swiper-button-next:hover{
+	background-image: url(../../img/index/point-next-hover.png);
+}
+#teachers.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
+	width: 20px;
+	height: 20px;
+	margin: auto 10px;
+}
+.teacherPager .swiper-pagination-bullet{
+	opacity: 1;
+	background-color: rgba(0,0,0,.3);
+}
+.teacherPager .swiper-pagination-bullet.swiper-pagination-bullet-active,
+.teacherPager .swiper-pagination-bullet:hover{
+	background-color: #9BB603;
+}
+
+.teacherlist {
+	overflow:hidden;
+	transition: all 0.5s;
+}
+
+.teacherlist li {
+	width: 388px;
+	height: 360px;
+	border-radius: 10px;
+	background: #fff;
+	float: left;
+	overflow: hidden;
+	transition:margin 0.5s;
+}
+
+.teacherlist li:nth-child(1) {
+	margin-left: 0px;
+}
+
+.teacherlist li .teacherinfo {
+	height: 44%;
+	border-bottom: 2px solid #EFEFEF;
+}
+.teacher-name{
+	cursor:pointer;
+}
+.teacher-name:hover{
+	text-decoration: underline;
+}
+.teacherlist li .teacherinfo .teacher-portrait {
+	cursor:pointer;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	margin-left: 40px;
+	margin-top: 20px;
+	background-size: 100% 100%;
+	transition:background-image 0.2s;
+}
+
+.teacherlist li .teacherinfo .teacher-portrait:hover{
+	filter:brightness(85%);
+}
+
+.teacherlist li .teacherinfo .teacherinfo-detail {
+	margin-left: 10px;
+}
+
+.teacherlist li .teacherinfo .teacherinfo-detail .teacherinfo-base {
+	margin-top: 20px;
+}
+
+.teacherlist li .teacherinfo .teacherinfo-detail .teacherinfo-base .exp {
+	margin-left: 20px;
+}
+
+.teacherlist li .teacherinfo .teacherinfo-detail .designation {
+	margin-top: 10px;
+}
+
+.teacherlist .btn-play {
+	width: 111px;
+	height: 32px;
+	border-radius: 16px;
+	background: url(../../img/index/play.png) no-repeat center center;
+	background-size: 100% 100%;
+	margin-top: 15px;
+	cursor: pointer;
+	transition: all 0.1s;
+}
+
+.teacherlist .btn-play:hover {
+	background: url(../../img/index/play-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.teacherlist li .teacherinfo-skills {
+	width: 80%;
+	height: 70px;
+	margin-left: 40px;
+}
+
+.teacherlist li .teacherinfo-skills div {
+	margin-top: 10px;
+	line-height: 25px;
+	width: 320px;
+}
+
+.teacherlist li .teacherinfo-skills .skillcontent{
+	height:75px;
+    overflow:hidden;
+	text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    word-break:break-all;
+}
+
+.teacherlist li .teacherinfo-skills .skills-desc {
+	height: 70px;
+}
+
+.teacherlist li .teacherinfo-skills .tags {
+	margin-left: -20px;
+	height:47px;
+	overflow: hidden;
+}
+
+.teacherlist li .teacherinfo-skills .tags div {
+	margin-left: 20px;
+	float: left;
+	width: auto;
+	margin-top: 0px;
+	color: #A3A3A3;
+}
+
+.teacherlist .banzhuren-item {
+	height: 320px;
+}
+
+.teacherlist .banzhuren-item .banzhuren-left {
+	width: 176px;
+	height: 100%;
+}
+
+.teacherlist .banzhuren-item .banzhuren-left .banzhuren-pic {
+	cursor:pointer;
+	width: 100%;
+	height: 260px;
+	transition:all 0.2s;
+}
+.banzhuren-name{
+	cursor:pointer;
+}
+.banzhuren-name:hover{
+	text-decoration: underline;
+}
+.teacherlist .banzhuren-item .banzhuren-left .banzhuren-pic:hover{
+	background-size:110% 110%;
+}
+
+.teacherlist .banzhuren-item .banzhuren-left .btn-play {
+	margin-left: calc(50% - 55.5px);
+	margin-top: 14px
+}
+
+.teacherlist .banzhuren-item .banzhuren-right-container {
+	width: 176px;
+	margin-left: 18px;
+	margin-top: 18px;
+}
+
+.teacherlist .banzhuren-item .banzhuren-right-container .banzhuren-words {
+	margin-top: 14px;
+}
+
+.teacherlist .banzhuren-item .banzhuren-right-container .text-banzhuren-words {
+	line-height: 24px;
+	height: 96px;
+	margin-top: 8px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp:4;
+    -webkit-box-orient:vertical;
+    word-break:break-all;
+	
+}
+
+.teacherlist .banzhuren-item .banzhuren-right-container .banzhuren-tags {
+	margin-top: 18px;
+}
+
+.teacherlist .banzhuren-item .banzhuren-right-container .tags div {
+	margin-top: 8px;
+	color:#A3A3A3
+}
+.banzhurenlist{
+	display: none;
+}

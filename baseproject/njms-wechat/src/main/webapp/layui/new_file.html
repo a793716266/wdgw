@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layPage快速使用</title>
+
+  <link rel="stylesheet" href="/static/build/layui.css" media="all">
+   <link rel="stylesheet" href="css/layui.css"  media="all">
+</head>
+<body>
+ 
+<div id="test1"></div>
+ 
+<script src="layui.js"></script>
+<script>
+layui.use('laypage', function(){
+  var laypage = layui.laypage;
+  
+  //执行一个laypage实例
+  //count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'
+laypage.render({
+    elem: 'test1'
+    ,count: 100
+    ,first: '首页'
+    ,last: '尾页'
+    ,layout: ['prev', 'page', 'next', 'count','limit', 'refresh', 'skip']
+    ,jump: function(obj){
+      
+    }
+});
+//  laypage.render({
+//  elem: 'test1'
+//  ,count: 100
+//  ,first: '首页'
+//  ,last: '尾页'
+//  ,prev: '<em>←</em>'
+//  ,next: '<em>→</em>'
+//});
+});
+</script>
+</body>
+</html>

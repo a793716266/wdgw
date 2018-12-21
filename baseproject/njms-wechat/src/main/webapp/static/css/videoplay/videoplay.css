@@ -1,0 +1,291 @@
+		.section {
+			background: black;
+		}
+		
+		.container .videoplayer {
+			position: relative;
+			width: 100%;
+			height: 725px;
+			/*组织文字被选中*/
+			-moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+		}
+		
+		
+		.container .videoplayer .videoPlayback{
+			width: 100%;
+			height: 680px;
+		}
+		.container .videoplayer #myVideo{
+			width: 100%;
+			height: calc(100% - 45px);
+			object-fit: fill;
+		}
+		.container .videoplayer .topback{
+			width: 100%;
+			height: 45px;
+			background: black;
+		}
+		.container .videoplayer .topback .videotitle{
+			font-size: 20px;
+			display: block;
+			color: #9FC105;
+			line-height: 45px;
+			text-indent: 5px;
+			display: none;
+		}
+		
+		.container .videoplayer .controls{
+			height: 45px;
+			background: black;
+			position: absolute;
+			top: calc(100% - 45px);
+			right: 0px;
+			display: none;
+		}
+		.container .videoplayer .controls>*{
+			float: left;
+			margin-left: 15px;
+		}
+		.container .videoplayer .progressTime{
+			width: 80px;
+			line-height: 45px;
+			color: #A8A5A5;
+		}
+		
+		.container .videoplayer .controls .muted{
+			width: 19px;
+			height: 19px;
+			margin-top: 13px;
+			background-image: url(../../img/videoplay/unmute2.png);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			cursor: pointer;
+		}
+		.mutedUnmuted{
+			background-image: url(../../img/videoplay/mute2.png) !important;
+		}
+		.container .videoplayer .controls .muted:hover{
+			color: #9FC105;
+		}
+		.container .videoplayer .controls .volumeBar{
+			position: relative;
+			width: 100px;
+			height: 11px;
+			margin-top: 17px;
+			margin-left: 5px;
+			border-radius: 11px;
+		}
+		.container .videoplayer .controls .volumeBar .back{
+			width: 100%;
+			height: 2px;
+			margin-top: 4px;
+			background: red;
+		}
+		.container .videoplayer .controls .volumeBar .volume{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 10px;
+			height: 10px;
+			background: #9FC105;
+			border-radius: 50%;
+		}
+		
+		.container .videoplayer .play {
+			width: 90px;
+			height: 90px;
+			background: url(../../img/videoplay/big_play_btn.png) no-repeat;
+			position: absolute;
+			top: 73%;
+			left: 10px;
+			display: none;
+			cursor: pointer;
+		}
+		.container .videoplayer .full {
+			margin-top: 5px;
+			width: 35px;
+			height: 35px;
+			background: url(../../img/videoplay/timg.jpg) no-repeat;
+			background-size:100% 100% ;
+			cursor: pointer;
+		}
+		.container .videoplayer .progressBar {
+			position: absolute;
+			bottom: calc(100% - 635px);
+			left: 0;
+			width: 100%;
+			height: 10px;
+			background-color: #14161A;
+		}
+		
+		.container .videoplayer .timeBar {
+			width: 0;
+			height: 100%;
+			background-color: #FE0000; /*#DCDCDC*/
+			opacity: 0.7;
+		}
+		
+		.container .videoplayer .menu {
+			width: 100%;
+			height: calc(100% - 680px);
+			background: #353535;
+			opacity: 0.7;
+			border-bottom-left-radius: 2px;
+			border-bottom-right-radius: 2px;
+		}
+		
+		.container .videoplayer .menu li {
+			width: 100px;
+			float: left;
+			padding: 0 10px;
+		}
+		.container .videoplayer .menu li:hover .img + span{
+			color: orange;
+		}
+		
+		.container .videoplayer .menu li:last-of-type {
+			float: right;
+			width: 72px;
+		}
+		
+		.container .videoplayer .menu .img {
+			display: block;
+			width: 25px;
+			height: 25px;
+			float: left;
+			margin-top: 10px;
+			cursor: pointer;
+		}
+		.container .videoplayer .menu a{
+			text-decoration: none;
+		}
+		.container .videoplayer .menu .img + span {
+			color: #DCDCDC;
+			font-size: 12px;
+			height: 45px;
+			line-height: 40px;
+		}
+		
+		.container .videoplayer .menu .img + .zancount{
+			color: #DCDCDC;
+			font-size: 12px;
+			width: 40px;
+			height: 45px;
+			line-height: 45px;
+			background: #353535;
+			outline: none;
+			border: 0;
+		}
+		.container .videoplayer .menu .img + .zancount:hover{
+			cursor: pointer;
+			color: orange;
+		}
+		
+		
+		.container .videoplayer .menu .feedback {
+			background: url(../../img/videoplay/feedback.png) no-repeat;
+		}
+		
+		.container .videoplayer .menu .discuss {
+			background: url(../../img/videoplay/discuss.png) no-repeat;
+		}
+		
+		.container .videoplayer .menu .share {
+			background: url(../../img/videoplay/share.png) no-repeat;
+		}
+		
+		.container .videoplayer .menu .good {
+			background-image: url(../../img/videoplay/zan2.png);
+			background-repeat: no-repeat;
+			background-size: 70% 70%;
+		}
+		
+		.container .recommend{
+			width: 1201px;
+			height: 410px;
+		}
+		.container .recommend .part1{
+			height: 114px;
+		}
+		.container .recommend .part1 .text{
+			margin: 40px 0px;
+			height: 34px;
+			line-height: 34px;
+			border-bottom: 1px solid gray;
+		}
+		.container .recommend .part1 .text .courses{
+			float: left;
+			color: #fff;
+			font-size: 22px;
+			border-bottom: 2px solid yellow;
+		}
+		.container .recommend .part1 .text .whole{
+			float: right;
+			color: #808080;
+		}
+		.container .recommend .part2{
+		}
+		.container .recommend .part2 li{
+			width: 280px;
+			float: left;
+		}
+		.container .recommend .part2 li:not(:first-child){
+			margin-left: 27px;
+		}
+		.container .recommend .part2 li .course{
+			position: relative;
+			width: calc(100% - 2px);
+			height: 186px;
+			border: 1px solid #DCDCDC;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+		}
+		.container .recommend .part2 li .course .subject{
+			width: 100%;
+			height: 100%;
+			object-fit: fill;
+		}
+		.container .recommend .part2 li .course .play{
+			width: 70px;
+			height: 70px;
+			background: url(../../img/videoplay/big_play_btn.png) no-repeat;
+			background-size: 200%;
+			position: absolute;
+			top: calc(50% - 35px);
+			left: calc(50% - 35px);
+			display: none;
+			cursor: pointer;
+		}
+		/*.container .recommend .part2 li .course:hover .play{
+			display: block;
+		}*/
+		.container .recommend .part2 li .explain{
+			height: 50px;
+			background: #fff;
+			border-bottom-left-radius: 2px;
+			border-bottom-right-radius: 2px;
+		}
+		.container .recommend .part2 li .explain .title,
+		.container .recommend .part2 li .explain .type{
+			text-indent: 1em;
+			font-weight: 700;
+			height: 25px;
+			line-height: 25px;
+		}
+		.container .recommend .part2 li .explain .title a{
+			text-decoration: none;
+		}
+		.container .recommend .part2 li .explain .title a:hover{
+			cursor: pointer;
+			color: #9FC105;
+		}
+		.container .recommend .part2 li .explain .type{
+			color: #FFCC34;
+			text-shadow:0 0 0.1em #FFCC34;
+		}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.CurriculuminfoDao">
+	<select id="findTop4" resultType="com.flc.entity.Curriculuminfo">
+		select `PICTURE` as PICTURE,
+			PICTURE,INFONAME,WAGES,STUDYTIME,CREATEUSER,REMARKS,CREATETIME
+		from  Wdgw_curriculuminfo
+			order by createTime desc limit 0,4
+	</select>
+	
+	
+	
+</mapper>

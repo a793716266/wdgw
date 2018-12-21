@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.VideoDao">
+	<!-- 根据课程类型连合查询 -->
+	<select id="findByCourse"  parameterType="list" resultType="com.flc.entity.Video">
+		<foreach collection="list" item="item" separator=" UNION ALL " index="index">
+			SELECT * FROM(SELECT  `PICTURENAME` as PICTURENAME,TITLE,COURSE,ISFREE,URL FROM wdgw_video WHERE course = #{item}  ORDER BY createtime DESC LIMIT 0,4) AS a#{index}
+		</foreach>
+	</select>
+	
+	<!--查询所有课程名称，去重复 -->
+	<select id="findCourse"  resultType="string">
+		SELECT course FROM `wdgw_video` GROUP BY course HAVING COUNT(course)>=1
+	</select>
+	
+	<!-- 根据视频url查询视频的id -->
+	<select id="findToId" resultType="string" parameterType="string">
+		SELECT `VIDEO_ID` FROM `wdgw_video` WHERE `URL` = #{videoId}
+	</select>
+	
+</mapper>

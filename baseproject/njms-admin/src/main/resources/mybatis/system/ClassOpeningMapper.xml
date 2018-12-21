@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ClassOpeningMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		WDGW_CLASSOPENING
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		CTYPE,	
+		CLASSSTATE,	
+		CLASSTYPENAME,	
+		CLASSNUMBER,	
+		TOTALNUMBER,	
+		CURRENTNUMBER,	
+		RESERVSSTATE,	
+		CREATETIME,	
+		CREATEUSER,	
+		REMARKS,	
+		CLASSOPENING_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{CTYPE},	
+		#{CLASSSTATE},	
+		#{CLASSTYPENAME},	
+		#{CLASSNUMBER},	
+		#{TOTALNUMBER},	
+		#{CURRENTNUMBER},	
+		#{RESERVSSTATE},	
+		#{CREATETIME},	
+		#{CREATEUSER},	
+		#{REMARKS},	
+		#{CLASSOPENING_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			CLASSOPENING_ID = #{CLASSOPENING_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			CTYPE = #{CTYPE},
+			CLASSSTATE = #{CLASSSTATE},
+			CLASSTYPENAME = #{CLASSTYPENAME},
+			CLASSNUMBER = #{CLASSNUMBER},
+			TOTALNUMBER = #{TOTALNUMBER},
+			CURRENTNUMBER = #{CURRENTNUMBER},
+			RESERVSSTATE = #{RESERVSSTATE},
+			CREATEUSER =#{CREATEUSER},
+			REMARKS = #{REMARKS},
+		CLASSOPENING_ID = CLASSOPENING_ID
+		where 
+		CLASSOPENING_ID = #{CLASSOPENING_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			CLASSOPENING_ID = #{CLASSOPENING_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1 
+		<if test="pd.lastStart!= null and pd.lastStart != ''"><!-- 关键词检索 -->
+			and
+					<![CDATA[CREATETIME >= #{pd.lastStart}]]>
+		</if>
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''"><!-- 关键词检索 -->
+			and
+					<![CDATA[CREATETIME <= #{pd.lastEnd}]]>
+		</if>
+		<if test="pd.reservsstate != null and pd.reservsstate != ''"><!-- 预定状态检索 -->
+			and
+				RESERVSSTATE = ${pd.reservsstate}
+		</if>
+		order by CREATETIME DESC
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1 
+		<if test="lastStart!= null and lastStart != ''"><!-- 关键词检索 -->
+			and
+				<![CDATA[CREATETIME >= #{lastStart}]]>
+		</if>
+		<if test="lastEnd!= null and lastEnd != ''"><!-- 关键词检索 -->
+			and
+				<![CDATA[CREATETIME <= #{lastEnd}]]>
+		</if>
+		<if test="reservsstate != null and reservsstate != ''"><!-- 预定状态检索 -->
+			and
+				RESERVSSTATE = ${reservsstate}
+		</if>
+		order by CREATETIME DESC
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where
+			CLASSOPENING_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	
+	<!-- 批量下载 -->
+	<select id="toBatchExcel" parameterType="String" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		 where 
+			CLASSOPENING_ID in 
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>	
+	</select>	
+</mapper>

@@ -1,0 +1,49 @@
+.toubu-xiala{
+	width: 105px;
+	height: 220px;
+	position: absolute;
+	top: 48px;
+	display: none;
+	z-index:5555;
+	overflow: hidden;
+	background:#FFFFFF ;
+	right: 20%;
+	border-radius: 2px;
+}
+.toubu-xiala-ul{
+		width: 105px;
+}
+.toubu-xiala-ul-li{
+	position: relative;
+	width: 105px;
+	height: 44px;
+	cursor: pointer;
+}
+.toubu-xiala-ul li:hover{
+	background: darkgrey;
+	transition: all 0.2s;
+}
+.toubu-xiala-ul-li-tt{
+	/*margin-bottom: 20px;*/
+	position: absolute;
+	top: 11px;
+}
+.toubu-xiala-ul-li-text{
+	width: 60px;
+	height: 20px;
+	position: absolute;
+	left: 13px;
+	color: #6D6D6D;
+	line-height: 20px;
+}
+.toubu-xiala-ul-li-text-num{
+	width: 15px;
+	height: 20px;
+	position: absolute;
+	left: 75px;
+	color: #FFA234;
+	line-height: 20px;
+
+}
+
+

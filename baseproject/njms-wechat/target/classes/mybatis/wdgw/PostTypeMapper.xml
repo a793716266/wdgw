@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.flc.dao.PostTypeDao">
+	<!-- 查询学习生活的模块 -->
+	<select id="findStudyAll" parameterType="string" resultType="com.flc.entity.PostType">
+		SELECT
+			`POSTTYPE_ID` as posttype_id,
+			wdgw_posttype.`NAME` as name,
+			wdgw_posttype.THEME AS theme,
+			wdgw_posttype.PICTURE as picture,
+			wdgw_posttype.REPLYCARD AS replycard
+			FROM
+			wdgw_posttype
+		WHERE
+			wdgw_posttype.PLATE = 0
+	</select>
+	
+	<!-- 查询活跃达人 -->
+	<select id="findActiveman"  resultType="com.flc.entity.PostType">
+		SELECT (SELECT NICKNAME FROM `wdgw_wd_users`  WHERE `wdgw_wd_users`.`WD_USERS_ID`=`wdgw_post`.`USER`)username,
+				(SELECT picture FROM `wdgw_wd_users`  WHERE `wdgw_wd_users`.`WD_USERS_ID`=`wdgw_post`.`USER`)userpicture,
+				COUNT(1) AS postcount
+			FROM `wdgw_post` GROUP BY USER ORDER BY postcount DESC LIMIT 0,10
+	</select>
+	
+	<!-- 查询生活区域的模块 -->
+	<select id="findLifeAll" parameterType="string" resultType="com.flc.entity.PostType">
+		SELECT
+			`POSTTYPE_ID` as posttype_id,
+			wdgw_posttype.`NAME` as name,
+			wdgw_posttype.THEME AS theme,
+			wdgw_posttype.PICTURE as picture,
+			wdgw_posttype.REPLYCARD AS replycard
+			FROM
+			wdgw_posttype
+		WHERE
+			wdgw_posttype.PLATE = 1
+	</select>
+	<select id="findById" parameterType="string" resultType="com.flc.entity.PostType">
+		SELECT
+		    `POSTTYPE_ID`,
+			  `NAME`,
+			  `THEME`,
+			  `REPLYCARD`,
+			  `SYNOPSIS`,
+			  `PICTURE`,
+			  (SELECT nickname FROM `wdgw`.`wdgw_wd_users` WHERE `WD_USERS_ID`= posttype.manager) as manager,
+			  (SELECT COUNT(*) FROM `wdgw`.`wdgw_post` WHERE `POSTTYPE_ID` = posttype.`POSTTYPE_ID`) AS num,
+			  (SELECT COUNT(*) FROM `wdgw`.`wdgw_post` AS post WHERE `POSTTYPE_ID` = posttype.`POSTTYPE_ID` AND post.`CREATETIME` LIKE CONCAT(DATE_FORMAT(NOW(),'%Y-%m-%d'),'%')) AS todaynum,
+			  `PLATE`,
+			  `CREATETIME`,
+			  `CREATEUSER`,
+			  `REMARKS`
+		FROM `wdgw`.`wdgw_posttype` as posttype
+		WHERE POSTTYPE_ID = #{typeid}
+	</select>
+	
+	<!-- 更新帖子类型的主题数 -->
+	<update id="updPostTypeTheme" parameterType="string">
+		UPDATE `wdgw`.`wdgw_posttype`
+		SET `THEME` = `THEME`+1 
+		WHERE `POSTTYPE_ID` =  #{posttype_id}
+	</update>
+	
+	<!-- 更新帖子类型的回帖数 -->
+	<update id="updPostTypeReplycard" parameterType="string">
+		UPDATE `wdgw`.`wdgw_posttype`
+		SET `REPLYCARD` = `REPLYCARD`+1
+		WHERE `POSTTYPE_ID` =  (SELECT `POSTTYPE_ID` FROM `wdgw_post` WHERE `POST_ID` =  #{post_id})
+	</update>
+	
+</mapper>

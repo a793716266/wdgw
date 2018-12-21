@@ -1,0 +1,17 @@
+.section .container .section-top {
+	width: 100%;
+	margin-top: 50px;
+}
+
+.section .container .section-top li .icon-computer {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: url(../img/index/computer.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-top li .aim {
+	margin-left: 19px;
+	margin-top: 20px;
+}

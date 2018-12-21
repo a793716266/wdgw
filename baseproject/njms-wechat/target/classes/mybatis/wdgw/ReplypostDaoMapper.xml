@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.ReplypostDao">
+	<sql id="tabName">
+	`WDGW_POSTRETURN`
+	</sql>
+	<sql id="Fieid">
+		POSTID AS postid,	
+		USERID AS userid,	
+		COMMENCONTENT AS commencontent,
+		(SELECT NICKNAME FROM `wdgw_wd_users` WHERE `wdgw_postreturn`.`USERID`=`wdgw_wd_users`.`WD_USERS_ID`) AS usernickname,
+		(SELECT picture FROM `wdgw_wd_users` WHERE `wdgw_postreturn`.`USERID`=`wdgw_wd_users`.`WD_USERS_ID`) AS userpictrue,
+		COMMENTFLOOR AS commentfloor,	
+		COMMENTTIME	AS commenttime,
+		REPLIERID AS replierid,	
+		LEVEL AS level,	
+		POSTRETURN_ID as postreturn_id
+		</sql>
+	<sql id="FieIDValue">
+		#{POSTID},	
+		#{USERID},	
+		#{COMMENCONTENT},	
+		#{COMMENTFLOOR},	
+		#{COMMENTTIME},	
+		#{REPLIERID},	
+		#{LEVEL},	
+		#{CREATEUSER},	
+		#{CREATETIME},	
+		#{REMARKS},	
+		#{POSTRETURN_ID}
+	</sql>
+    <select id="Replypost" parameterType="map" resultType="com.flc.entity.Replypost">
+    	SELECT <include refid="Fieid"/>
+    	FROM <include refid="tabName"/>
+    	where 1=1
+        <if test="post_id !=null and post_id !='' and replierid!=null and replierid!='' and level!=null and level!=''">
+       		AND POSTID='${post_id}'AND replierid='${replierid}' AND level=${level}
+       </if>
+       
+       <!--  <if test="replierid !=null and replierid !=''">
+       		and POSTID='${post_id}'
+       </if> -->
+        ORDER BY commentfloor ASC
+        LIMIT ${pagenow},${pagesize};
+    </select>
+    
+     <select id="getlist" parameterType="string" resultType="com.flc.entity.Replypost">
+    	SELECT <include refid="Fieid"/>
+    	FROM <include refid="tabName"/>
+       <if test="post_id !=null and post_id !='' and replierid!=null and replierid!='' and level!=null and level!=''">
+       		WHERE POSTID='${post_id}'AND replierid=#{replierid} AND level=0
+       </if>
+    
+       
+    </select>
+    <select id="checkfloormath" parameterType="map" resultType="int">
+    	SELECT COUNT(1) FROM <include refid="tabName"/>
+    	 WHERE 1=1
+    	<if test=" repfloorid!=null and  repfloorid !='' and post_id!=null and post_id!='' and  commentfloor!=null and commentfloor!=''">
+    		AND replierid='${repfloorid}' AND postid='${post_id}'and commentfloor=${commentfloor}
+    	</if>
+ 		
+    </select>
+    <select id="getMaxCommentfloor" parameterType="string" resultType="int" >
+      SELECT  MAX(COMMENTFLOOR)
+		FROM  <include refid="tabName"/>
+		
+		WHERE POSTID='${post_id}'
+    </select>
+	<!-- 新增-->
+	<insert id="replypost">
+		 insert into <include refid="tabName"/>
+		   (commencontent,
+		   	commentfloor,	
+		    commenttime,	
+		 	level,
+		 	postid,	
+		  	postreturn_id,
+		 	replierid,	
+			userid)
+		 values(
+		 	#{commencontent},
+		 	#{commentfloor},	
+			#{commenttime},	
+			#{level},	
+			#{postid},	
+			#{postreturn_id},	
+			#{replierid},	
+			#{userid}
+		 )	
+
+	</insert>
+	<insert id="save"  >
+		insert into 
+	<include refid="tabName"></include>
+		(
+	<include refid="Fieid"></include>
+		) values (
+	<include refid="FieIDValue"></include>
+		)
+	</insert>
+</mapper>

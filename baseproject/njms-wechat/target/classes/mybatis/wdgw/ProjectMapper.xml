@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.ProjectDao">
+	<resultMap type="com.flc.entity.Project" id="ProjectMap">
+		<id column="subject_id" property="project_id"></id>
+		<result column="subjectName" property="projectName"></result>
+		<result column="picturename" property="projectPic"></result>
+	</resultMap>
+	<!-- 查询前15个项目，每个类型5个 -->
+	<select id="getTop15" resultMap="ProjectMap">
+		<foreach collection="list" item="item" separator=" UNION ALL " index="index">
+			SELECT * FROM(SELECT `SUBJECT_ID`,`SUBJECTNAME`,`PICTURENAME` as PICTURENAME,`COURSE` FROM `wdgw_subject`
+			WHERE `COURSE` = #{item} AND `BIGORSMALL` = 0 ORDER BY `CREATETIME` DESC LIMIT 0,1) AS a#{index}
+			UNION ALL 
+			SELECT * FROM(SELECT `SUBJECT_ID`,`SUBJECTNAME`,`PICTURENAME` as PICTURENAME,`COURSE` FROM `wdgw_subject`
+			WHERE `COURSE` = #{item} AND `BIGORSMALL` = 1 ORDER BY `CREATETIME` DESC LIMIT 0,4) AS b#{index}
+		</foreach>
+	</select>
+</mapper>

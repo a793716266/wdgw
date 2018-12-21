@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.UsersDao">
+	<!-- 查询全部用户-->
+	<select id="finduser" resultType="com.flc.entity.User">
+		SELECT `WD_USERS_ID`,
+             `ACCOUNTNUMBER`,
+             `PASSWORD`,
+             `NICKNAME`,
+             `PHONENUMBER`,
+             `CREATETIME`,
+             `picture` AS `picture`,
+             (SELECT COUNT(`MESSAGES_ID`) FROM `wdgw_messages`) AS sysNum,
+			 (SELECT COUNT(`POST_ID`) FROM `wdgw_post` WHERE  `USER` = `user`.`WD_USERS_ID`) AS postNum,
+			 (SELECT COUNT(`VIDEO_ID`) FROM `wdgw_relation` WHERE `USER_ID`=`user`.`WD_USERS_ID` ) AS projectNum
+			FROM `wdgw_wd_users` AS `user`
+		<where>
+			<if test="phonenumber != null and phonenumber != ''">
+				phonenumber = #{phonenumber} 
+			</if>
+		</where>
+	</select>
+	
+	<select id="finduserall" resultType="com.flc.entity.User">
+		SELECT * FROM `wdgw_wd_users`
+	</select>
+	
+	<insert id="adduser"  parameterType="com.flc.entity.VideoAndUser" >
+		INSERT INTO `wdgw`.`wdgw_wd_users`
+            (`WD_USERS_ID`,
+             `ACCOUNTNUMBER`,
+             `PASSWORD`,
+             `NICKNAME`,
+             `PHONENUMBER`,
+             `CREATETIME`)
+		VALUES (#{WD_USERS_ID},
+		        #{phonenumber},
+		        #{password},
+		        #{NICKNAME},
+		        #{phonenumber},
+		        #{CREATETIME});
+	</insert>
+	<update id="update">
+		UPDATE 
+			`wdgw_wd_users` 
+		SET 
+			NICKNAME=#{nickname}
+		
+		WHERE 
+			WD_USERS_ID = #{wd_users_id};
+	</update>
+	<update id="updapictrue" parameterType="string">
+		UPDATE 
+			`wdgw_wd_users` 
+		SET 
+			PICTURE='${pictrue}'
+		WHERE 
+			WD_USERS_ID = '${wd_users_id}';
+	</update>
+</mapper>

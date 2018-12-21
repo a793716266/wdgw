@@ -1,0 +1,138 @@
+.container-from {
+	width: width: 100%;
+	display: flex;
+	margin-bottom:60px;
+	flex-wrap: wrap;
+	background: #EFEFEF;
+	border-radius: 3px;
+}
+
+.dibubor{
+	background: #FFFFFF;
+}
+.container-from-t-top {
+	width: 280px;
+	height: 180px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100% 100%;
+	position: relative;
+}
+
+.container-from-t:hover .container-from-t-top{
+	cursor: pointer;
+	transition: all 0.2s;
+	background-size: 110% 110% !important;
+}
+
+.container-from-t-sttom {
+	width: 280px;
+	height: 50px;
+	/* CHROME */
+	background: -webkit-linear-gradient(rgba(0, 0, 0, .05),#fff);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(rgba(0, 0, 0, .05),#fff);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(rgba(0, 0, 0, .05),#fff);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(rgba(0, 0, 0, .05),#fff);
+	overflow: hidden;
+}
+
+.Central-section {
+	width: 100%;
+	background: #FFFFFF;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.central-section-from-central {
+	width: 1200px;
+	margin: 0px auto;
+	background: #EFEFEF;
+	border-radius: 3px;
+}
+
+.container-from-t {
+	width: 280px;
+	height: 230px;
+	margin-bottom: 2px;
+	/*box-shadow: rgba(0,0,0,.2) -7px 7px 15px,rgba(0,0,0,.2) 7px 7px 15px;*/
+	float: left;
+	border-radius: 5px;
+	overflow: hidden;
+}
+a{text-decoration:none}
+.container-from-t-top .free-cover{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0);
+	transition: all 0.2s;
+	z-index: 9998;
+}
+.container-from-t-top a{
+	display: block;
+	position: absolute;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+}
+
+.Central-section-sttom {
+	width: 100%;
+	background: #EFEFEF;
+	border-radius: 3px;
+	margin-bottom:60px;
+	overflow: hidden;
+	
+}
+
+.container-from-sttom {
+		width: 1200px;
+	margin: 0 auto;
+	border-radius: 3px;
+	background: #EFEFEF;
+}
+.container-from-top{
+	width: 1200px;
+	margin: 0 auto;
+	border-radius: 3px;
+	background: #EFEFEF;
+	
+}
+.test {
+	width: 100%;
+	height: 60px;
+	background: #FFFFFF;
+}
+
+
+
+.text-p-1 {
+	font-size: 14px;
+	margin-left: 10px;
+	margin-top: 6px;
+	text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp:1;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    word-break:break-all;
+	cursor: pointer;
+}
+.text-p-1 a{
+	color:#666666 ;
+}
+.text-p-1:hover a{
+	transition: all 0.2s;
+	color: #000000;
+}
+.text-p-2 {
+	font-size: 12px;
+	color: orange;
+	margin-left: 10px;
+}
+

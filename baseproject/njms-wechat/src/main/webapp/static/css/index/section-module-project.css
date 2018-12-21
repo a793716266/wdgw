@@ -1,0 +1,72 @@
+.section .container .section-module .nav-project {
+	width: 470px;
+	margin-left: calc(50% - 235px);
+	margin-top: 40px;
+}
+
+.section .container .section-module .nav-project li {
+	width: 140px;
+	height: 34px;
+	border: 1px solid #A3A3A3;
+	border-radius: 17px;
+	text-align: center;
+	line-height: 34px;
+	background-color: #fff;
+	cursor: pointer;
+	transition: all 0.1s;
+}
+
+.section .container .section-module .nav-project li:hover,
+.section .container .section-module .nav-project li.active {
+	background-color: #9BB700;
+	color: #fff;
+	border-color: #9BB700;
+}
+
+.section .container .section-module .module-detail-project {
+	margin-top: 25px;
+}
+.project{
+	position: relative;
+	border-radius: 10px;
+	transition: all 0.3s;
+	overflow: hidden;
+	background-size: 100% 100%;
+}
+.project:hover{
+	background-size:110% 110%;
+	border-radius: 20px;
+}
+.project-cover{
+	width: 100%;
+	height: 100%;
+	transition: all 0.3s;
+	background-color: rgba(0,0,0,0);
+	left: 0;
+	top: 0;
+	position: absolute;
+}
+.project-cover:hover{
+	background-color: rgba(0,0,0,.15);
+}
+.section .container .section-module .module-detail-project .project-lg {
+	width: 388px;
+	height: 600px;
+	background-image: url(../../img/index/project-lg.png);
+	cursor: pointer;
+}
+
+.section .container .section-module .module-detail-project .project-sm-list {
+	width: 795px;
+	height: 600px;
+	flex-wrap: wrap;
+	align-content: space-between;
+}
+
+.section .container .section-module .module-detail-project .project-sm-list li {
+	width: 388px;
+	height: 290px;
+	cursor: pointer;
+	background-repeat:no-repeat ;
+	background-position: center center;
+}

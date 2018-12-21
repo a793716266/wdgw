@@ -1,0 +1,85 @@
+.section .container .section-module .module-detail-rate {
+	margin-top: 50px;
+}
+
+.section .container .section-module .module-detail .ratelist {
+	width: 100%;
+}
+
+.section .container .section-module .module-detail .ratelist li {
+	border-radius: 10px;
+	width: 375px;
+	height: 220px;
+	background-color: #fff;
+	position: relative;
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-top {
+	height: 65%;
+	border-bottom: 2px solid #EFEFEF;
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-top .portrait {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	top: -50px;
+	left: 20px;
+	border-radius: 50%;
+	cursor:pointer;
+	transition:all 0.2s;
+	background-size: 100 100%;
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-top .portrait:hover{
+	filter: brightness(85%);
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-top .rate-name {
+	margin-left: 130px;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-top .rate-quot {
+	width: 40px;
+	height: 25px;
+	background: url(../../img/index/quotes.png) no-repeat center center;
+	background-size: 100% 100%;
+	position: absolute;
+	right: 15px;
+	top: 20px;
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-top .text-rate {
+	width: 90%;
+	height:80px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp:4;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    word-break:break-all;
+	margin-left: 5.5%;
+	margin-top: 30px;
+	line-height: 20px;
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-bottom {
+	width: 90%;
+	margin-left: 5%;
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-bottom .rate-company-logo {
+	width: 160px;
+	height: 55px;
+	margin-top: 5px;
+}
+.section .container .section-module .module-detail .ratelist li .rate-bottom .rate-company-logo img{
+	margin-left: 0px !important;
+}
+
+.section .container .section-module .module-detail .ratelist li .rate-bottom .rate-company-name {
+	margin-top: 24px;
+}

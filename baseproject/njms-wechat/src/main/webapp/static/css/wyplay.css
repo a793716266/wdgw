@@ -1,0 +1,25 @@
+
+#autoplay{
+ cursor:pointer;
+}
+ 
+#headPlay_UL_Move{
+	position: absolute;
+	width: 170px;
+	height: 40px;
+	transform: translate(300px,200px);
+ 
+}
+#headPlay_UL{
+	transform: translateX(16px);
+	display: flex;
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+	margin:0px auto;
+}
+#headPlay_UL li{
+	flex:1;
+	color: white;
+	font-size: 80px;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.PostHostModuleDao">
+	<sql id="tabName">
+	`WDGW_POSTSRCTABLE`
+	</sql>
+	<sql id="Fieid">
+	 	PICSRC
+	   ,POSTURL
+	   ,TITLE
+	   ,ISTRUE
+		</sql>
+	 
+    <select id="checkposthost"   resultType="com.flc.entity.PostHostModule">
+    	 SELECT <include refid="Fieid"></include>
+    	 
+    			 FROM <include refid="tabName"></include>
+    			 
+    	 JOIN `wdgw_posthost` 
+
+				ON `wdgw_postsrctable`.`POSTHOST_ID`=`wdgw_posthost`.`POSTHOST_ID`
+
+	    WHERE `wdgw_posthost`.`STATUS`='1' AND `wdgw_posthost`.`CONTENTTYPE`='1';
+    </select>
+    
+    <select id="hottopic"   resultType="com.flc.entity.PostHostModule">
+    	 SELECT <include refid="Fieid"></include>
+    	 
+    			 FROM <include refid="tabName"></include>
+    			 
+    	 JOIN `wdgw_posthost` 
+
+				ON `wdgw_postsrctable`.`POSTHOST_ID`=`wdgw_posthost`.`POSTHOST_ID`
+
+	    WHERE `wdgw_posthost`.`STATUS`='1' AND `wdgw_posthost`.`CONTENTTYPE`='2';
+    </select>
+   
+</mapper>

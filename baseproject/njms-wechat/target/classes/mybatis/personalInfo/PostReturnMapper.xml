@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.flc.dao.PostReturnDao">
+	<select id="findAllReturn" resultType="com.flc.entity.PostReturnByMe">
+		SELECT
+		  pr.postreturn_id,
+		  p.title,
+		  pr.commencontent,
+		  p.restorenumber,
+		  pr.commenttime
+		FROM 
+			`wdgw_postreturn` AS pr
+		JOIN 
+			`wdgw_post` AS p
+		ON 
+			pr.`POSTID`=p.post_id
+		JOIN 
+			`wdgw_wd_users` AS u
+		ON 
+			p.user= u.wd_users_id
+		WHERE 
+			1=1
+		<if test="userId != null and userId != ''">
+			and  pr.`REPLIERID` = '${userId}'		
+		</if>
+		ORDER BY 
+			 pr.COMMENTTIME DESC
+		limit ${pageNo},${count}
+	</select>
+	
+	<delete id="delPosts"  parameterType="string">
+		DELETE FROM 
+			`wdgw_postreturn`
+		WHERE 
+			postreturn_id =#{postreturn_id}
+	</delete>
+	
+</mapper>

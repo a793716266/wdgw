@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+.curtain {
+	width: 100%;
+	background-color: #EFEFEF;
+	overflow: hidden;
+}

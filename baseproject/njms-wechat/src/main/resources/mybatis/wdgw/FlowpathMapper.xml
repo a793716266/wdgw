@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.FlowpathDao">
+	
+	<select id="flowpathall" parameterType="string" resultType="com.flc.entity.Flowpath">
+   SELECT TITLEIMAGE AS titleimage,TEXTDESCRIBE,DETAILSURL FROM wdgw_flowpath ORDER BY `SORT`  LIMIT 0,8 
+	</select>
+	
+	<select id="flowpathye" parameterType="string" resultType="com.flc.entity.Flowpath">
+   SELECT TITLEIMAGE AS titleimage,TEXTDESCRIBE,DETAILSURL,SORT,describeText,
+image1 image1,image2 AS image2,
+image3 AS image3 FROM wdgw_flowpath ORDER BY `SORT` 
+		</select>
+</mapper>

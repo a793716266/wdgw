@@ -1,0 +1,55 @@
+.lunbo {
+	cursor: pointer;
+	width: 100%;
+	height: 630px;
+	position: relative;
+	overflow: hidden;
+}
+
+.lunbo .lunbolist{
+	width: 100%;
+	height: 630px;
+	position: relative;
+}
+
+.lunbo .lunbolist li{
+	width: 100%;
+	height: 630px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100% 100%;
+	transition: margin 0.5s;
+	float: left;
+}
+
+.lunbo .btnPrev{
+	background: url(../../img/index/prev.png) no-repeat center center;
+	background-size: 100% 100%;
+	left: 0px;
+}
+
+.lunbo .btnPrev:hover {
+	background: url(../../img/index/prev-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.lunbo .btnNext {
+	background: url(../../img/index/next.png) no-repeat center center;
+	background-size: 100% 100%;
+	right: 0px;
+}
+
+.lunbo .btnNext:hover {
+	background: url(../../img/index/next-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.lunbo .rotateBtn {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: calc(50% - 25px);
+	opacity: 0.7;
+	display: none;
+	transition: background-image 0.2s;
+}

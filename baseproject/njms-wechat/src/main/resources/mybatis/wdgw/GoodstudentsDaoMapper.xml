@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.GoodstudentsDao">
+
+	<select id="findTop5" resultType="com.flc.entity.Goodstudents">
+		SELECT `GOODSTUDENTS_ID`,`VIDEONAME`,`STUNAME`,`EMPWAGE`,`C_TYPE`,`SPEECH`,`EMPCOMPANY`,`EMPTIME`,`STUDENTIMG` AS STUDENTIMG  FROM `wdgw_goodstudents`
+		order by `EMPWAGE` desc limit 0,4
+	</select>
+	<select id="findTop4" resultType="com.flc.entity.Goodstudents"
+		parameterType="list">
+		<foreach collection="list" item="type" separator=" UNION ALL " index="index" >
+			SELECT *FROM (SELECT `GOODSTUDENTS_ID`,`VIDEONAME`,`STUNAME`,`EMPWAGE`,`C_TYPE`,`SPEECH`,`EMPCOMPANY`,`EMPTIME`,`STUDENTIMG` AS STUDENTIMG FROM `wdgw_goodstudents` WHERE c_type =#{type}
+			 ORDER BY `EMPWAGE` DESC LIMIT 0,8)AS a#{index}
+		</foreach>
+	</select>
+	<select id="findTop3" resultType="com.flc.entity.Goodstudents"
+		parameterType="map">
+		SELECT `GOODSTUDENTS_ID`,`VIDEONAME`,`STUNAME`,`EMPWAGE`,`C_TYPE`,`SPEECH`,`EMPCOMPANY`,`EMPTIME`,`STUDENTIMG` AS STUDENTIMG  FROM `wdgw_goodstudents`
+		<where>
+			<if test="type != null and type != ''">
+				c_type = #{type}
+			</if>
+		</where>
+		order by `EMPWAGE` desc limit 0,3
+	</select>
+
+</mapper>

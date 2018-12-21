@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.TeacherDao">
+	<resultMap type="com.flc.entity.Teacher" id="teacherMapper">
+		<id column="TEACHER_ID" property="teacher_id"></id>
+		<collection property="content" ofType="com.flc.entity.Teacherevaluation" javaType="java.util.ArrayList">
+			<id column="TEACHEREVALUATION_ID" property="teacherevaluation_id"></id>
+		</collection>
+	</resultMap>
+	<!-- 查询添加日期前十的老师-->
+	<select id="findteacher" resultMap="teacherMapper"  parameterType="map">
+		SELECT t.`teacher_id`,c.`content`,t.`HEADPORTRAIT` AS HEADPORTRAIT,t.`NAME`,t.`CURRICULUMTYPE`,t.`INFO`,t.`NUMBEROFYEARS`,t.`IDENTITY` FROM wdgw_teacher t
+		LEFT JOIN wdgw_teacherevaluation c
+		ON c.`teacherid` = t.`teacher_id`
+		WHERE t.`teacher_id` IN 
+		(
+		   SELECT * FROM
+		       (
+			 	 SELECT `teacher_id` FROM wdgw_teacher 
+			<where>
+			<if test="identity != null and identity != ''">
+				IDENTITY = #{identity} 
+			</if>
+		    </where>
+			<if test="page != null and page != ''">
+			ORDER BY `createtime` DESC LIMIT 0,#{page}
+		    </if>
+		       ) AS t
+		)
+		ORDER BY t.`teacher_id`
+	</select>
+</mapper>

@@ -1,0 +1,28 @@
+.ks {
+	width: 100%;
+}
+
+.login-big,.login-big-two  {
+	width: 100%;
+	height: 1000px;
+	background-size:100% 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	position: relative;
+}
+.login-big{
+	background-image: url(../../img/account/bg.jpg);
+}
+.login-big-two {
+	background-image: url(../../img/account/bgtow.jpg);
+}
+
+	
+.login-big-top {
+	width: 263px;
+	height: 76px;
+	position: absolute;
+	margin-left: 355px;
+	margin-top: 20px;
+	background: url(../../img/account/logo.png);
+}

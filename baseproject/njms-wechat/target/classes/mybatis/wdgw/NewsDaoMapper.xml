@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.NewsDao">
+	<!--按类型查询新闻信息-->
+	<select id="newsAll" parameterType="string" resultType="com.flc.entity.News">
+		SELECT
+			NEWS_ID,
+			PICTURENAME AS PICTURENAME,
+			NEWTITLE,
+			NEWCONTENT,
+			NEWSTYPE,
+			CREATEUSER,
+			CREATETIME,
+			REMARKS,
+			ORIGIN,
+			AUTHOR,
+			CLICKS
+			FROM
+			wdgw_news
+		WHERE `NEWSTYPE`= #{newsType} 
+		ORDER BY `CREATETIME` DESC 
+		LIMIT 0,11
+	</select>
+	<!--首页按类型查询新闻信息-->
+	<select id="newsindexAll" parameterType="string" resultType="com.flc.entity.News">
+		SELECT
+			NEWS_ID,
+			PICTURENAME AS PICTURENAME,
+			NEWTITLE,
+			NEWCONTENT,
+			NEWSTYPE,
+			CREATEUSER,
+			SUBSTRING(CREATETIME,1,10) AS CREATETIME,
+			REMARKS
+			FROM
+			wdgw_news
+		WHERE `NEWSTYPE`= #{newsType} 
+		AND NEWCONTENT LIKE '%&lt;img%'
+		ORDER BY `CREATETIME` DESC 
+		LIMIT 0,6
+	</select>
+<!-- 	新闻详细信息 -->
+	<select id="newsInformation" parameterType="string" resultType="com.flc.entity.News">
+		SELECT
+			NEWS_ID,
+			PICTURENAME AS PICTURENAME,
+			NEWTITLE,
+			NEWCONTENT,
+			NEWSTYPE,
+			CREATEUSER,
+			CREATETIME,
+			REMARKS,
+			ORIGIN,
+			AUTHOR,
+			CLICKS
+			FROM
+			wdgw_news
+		WHERE  `NEWS_ID`=#{newsId}
+	</select>
+	
+	<update id="updateClick" parameterType="String">
+		update
+			wdgw_news
+		set  CLICKS= CLICKS+1
+		WHERE  `NEWS_ID`=#{newsId}
+	</update>
+	
+	<select id="recommendedNews" parameterType="map" resultType="com.flc.entity.News">
+		SELECT
+			NEWS_ID,
+			PICTURENAME AS PICTURENAME,
+			NEWTITLE,
+			NEWCONTENT,
+			NEWSTYPE,
+			CREATEUSER,
+			CREATETIME,
+			REMARKS,
+			ORIGIN,
+			AUTHOR,
+			CLICKS
+			FROM
+			wdgw_news
+		WHERE  `NEWSTYPE`= #{newsType} 
+		ORDER BY `CLICKS` DESC 
+		LIMIT #{newsStart},#{newsEnd}
+	</select>
+</mapper>

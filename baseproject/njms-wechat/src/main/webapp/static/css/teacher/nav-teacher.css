@@ -1,0 +1,64 @@
+.section-teacher {
+	margin-bottom: 60px;
+}
+
+.teacher-tab {
+	width: 520px;
+	height: 60px;
+	background-color: #fff;
+	position: relative;
+}
+.teacher-tab.down{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.teacher-tab>.teacher-tab-item {
+	width: 260px;
+	height: 60px;
+	cursor: pointer;
+	border: 1px solid #D1D1D1;
+}
+
+.teacher-tab>.teacher-tab-item .tag-text{
+	line-height: 60px;
+	margin-left: 15px;
+}
+
+.teacher-tab>.teacher-tab-item .teacher-icon {
+	width: 30px;
+	height: 40px;
+	margin-top: 10px;
+	margin-left: 24px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.teacher-tab.up{
+	position: absolute;	
+	overflow: hidden;
+	width:260px;
+	background-color:#9BB700;
+	border: 1px solid #9BB700;
+}
+.teacher-tab.up>.teacher-tab-item{
+	position: absolute;	
+	border: 1px solid #9BB700;
+}
+.teacher-tab.up>.teacher-tab-item .tag-text{
+	color:#fff;
+}
+.jiangshi-icon {
+	background-image: url(../../img/teacherpage/jiangshi.png);
+}
+
+.banzhuren-icon {
+	background-image: url(../../img/teacherpage/banzhuren.png);
+}
+
+.teacher-tab.up>.teacher-tab-item .jiangshi-icon{
+	background-image: url(../../img/teacherpage/jiangshi-active.png);
+}
+.teacher-tab.up>.teacher-tab-item .banzhuren-icon{
+	background-image: url(../../img/teacherpage/banzhuren-active.png);
+}

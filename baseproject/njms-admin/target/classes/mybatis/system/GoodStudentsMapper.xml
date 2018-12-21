@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GoodStudentsMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		WDGW_GOODSTUDENTS
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		VIDEONAME,	
+		STUNAME,	
+		EMPWAGE,	
+		C_TYPE,	
+		SPEECH,	
+		EMPCOMPANY,	
+		EMPTIME,	
+		CREATETIME,	
+		CREATEUSER,	
+		REMARKS,
+		STUDENTIMG,	
+		GOODSTUDENTS_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{VIDEONAME},	
+		#{STUNAME},	
+		#{EMPWAGE},	
+		#{C_TYPE},	
+		#{SPEECH},	
+		#{EMPCOMPANY},	
+		#{EMPTIME},	
+		#{CREATETIME},	
+		#{CREATEUSER},	
+		#{REMARKS},	
+		#{STUDENTIMG},
+		#{GOODSTUDENTS_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			GOODSTUDENTS_ID = #{GOODSTUDENTS_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			VIDEONAME = #{VIDEONAME},
+			STUNAME = #{STUNAME},
+			EMPWAGE = #{EMPWAGE},
+			C_TYPE = #{C_TYPE},
+			SPEECH = #{SPEECH},
+			EMPCOMPANY = #{EMPCOMPANY},
+			EMPTIME = #{EMPTIME},
+			CREATETIME = #{CREATETIME},
+			CREATEUSER = #{CREATEUSER},
+			REMARKS = #{REMARKS},
+			STUDENTIMG = #{STUDENTIMG},
+		GOODSTUDENTS_ID = GOODSTUDENTS_ID
+		where 
+		GOODSTUDENTS_ID = #{GOODSTUDENTS_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			GOODSTUDENTS_ID = #{GOODSTUDENTS_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1 
+		<!-- 开始到结束时间 -->
+		<if test="pd.lastEnd!= null and pd.lastEnd != '' and pd.lastStart!= null and pd.lastStart != ''"><!-- 关键词检索 -->
+			and CREATETIME between #{pd.lastStart} and #{pd.lastEnd}
+		</if>
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and STUNAME LIKE CONCAT('%', #{pd.keywords},'%')
+		</if>
+		<!-- 开始时间 -->
+		<if test="pd.lastStart!= null and pd.lastStart != ''"><!-- 关键词检索 -->
+			and  CREATETIME >= #{pd.lastStart}
+		</if>
+		<!-- 结束时间 -->
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''"><!-- 关键词检索 -->
+			and  CREATETIME &lt;= #{pd.lastEnd}
+		</if>
+		<!-- 下拉框选择条件 -->
+		<if test="pd.name!= null and pd.name != ''"><!-- 关键词检索 -->
+			and  C_TYPE = #{pd.name}
+		</if>
+		order by CREATETIME DESC
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<!-- 开始到结束时间 -->
+		<if test="lastEnd!= null and lastEnd != '' and lastStart!= null and lastStart != ''"><!-- 关键词检索 -->
+			and CREATETIME between #{lastStart} and #{lastEnd}
+		</if>
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
+			and STUNAME LIKE CONCAT('%', #{keywords},'%')
+		</if>
+		<!-- 开始时间 -->
+		<if test="lastStart!= null and lastStart != ''"><!-- 关键词检索 -->
+			and  CREATETIME >= #{lastStart}
+		</if>
+		<!-- 结束时间 -->
+		<if test="lastEnd!= null and lastEnd != ''"><!-- 关键词检索 -->
+			and  CREATETIME &lt;= #{lastEnd}
+		</if>
+		<!-- 下拉框选择条件 -->
+		<if test="name!= null and name != ''"><!-- 关键词检索 -->
+			and  C_TYPE = #{name}
+		</if>
+		order by CREATETIME DESC
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			GOODSTUDENTS_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

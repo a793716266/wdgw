@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.AcademyDao">
+	<select id="getAllAcademy" resultType="com.flc.entity.Academy">
+		SELECT
+ 		 `ACADEMY_ID`,`NAME`,`PICTURE` as picture
+		FROM `wdgw`.`wdgw_academy`
+		order by CREATETIME desc
+	</select>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.SubjectDao">
+	<!-- 查询免费干货课程类型的 top 4-->
+	<select id="findTop4" resultType="com.flc.entity.Subject" parameterType="map">
+		SELECT * FROM `wdgw_subject`
+		<where>
+			<if test="null != type and '' != type">
+				 course = #{type} 
+			</if>
+		</where>
+		 LIMIT 0,4
+	</select>
+</mapper>

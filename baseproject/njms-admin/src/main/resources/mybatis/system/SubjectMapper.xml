@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SubjectMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		WDGW_SUBJECT
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		SUBJECTNAME,	
+		PICTURENAME,	
+		COURSE,	
+		CREATETIME,	
+		CREATEUSER,	
+		REMARKS,	
+		SUBJECT_ID,
+		BIGORSMALL
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{SUBJECTNAME},	
+		#{PICTURENAME},	
+		#{COURSE},	
+		#{CREATETIME},	
+		#{CREATEUSER},	
+		#{REMARKS},	
+		#{SUBJECT_ID},
+		#{BIGORSMALL}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			SUBJECT_ID = #{SUBJECT_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			SUBJECTNAME = #{SUBJECTNAME},
+			PICTURENAME = #{PICTURENAME},
+			COURSE = #{COURSE},
+			REMARKS = #{REMARKS},
+			BIGORSMALL=#{BIGORSMALL},
+		SUBJECT_ID = SUBJECT_ID
+		where 
+		SUBJECT_ID = #{SUBJECT_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			SUBJECT_ID = #{SUBJECT_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				SUBJECTNAME LIKE CONCAT('%', #{pd.keywords},'%')
+				)
+		</if>
+		<if test="pd.lastStart!= null and pd.lastStart != ''">
+			and
+				(
+				CREATETIME >= #{pd.lastStart}
+				)
+		</if>
+		
+		<if test="pd.lastEnd!= null and pd.lastEnd != ''">
+			and (CREATETIME &lt;= #{pd.lastEnd})
+		</if>
+		<if test="pd.course!= null and pd.course != ''">
+			and (COURSE = #{pd.course})
+		</if>
+		order by CREATETIME DESC
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				SUBJECTNAME LIKE CONCAT('%', #{keywords},'%')
+				)
+		</if>
+		<if test="lastStart!= null and lastStart != ''">
+			and
+				(
+				CREATETIME >= #{lastStart}
+				)
+		</if>
+		
+		<if test="lastEnd!= null and lastEnd != ''">
+			and (CREATETIME &lt;= #{lastEnd})
+		</if>
+		<if test="course!= null and course != ''">
+			and (COURSE = #{course})
+		</if>
+		order by CREATETIME DESC
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			SUBJECT_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

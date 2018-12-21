@@ -1,0 +1,88 @@
+.section .container .section-module .module-detail-job .jobprocess {
+	height: 445px;
+	flex-wrap: wrap;
+	align-content: space-between;
+}
+
+.section .container .section-module .module-detail-job .jobprocess li {
+	width: 260px;
+	height: 196px;
+	background-color: #fff;
+	border-radius: 10px;
+	position: relative;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: 95px 20px;
+	background-size: 27% 40%;
+	cursor: pointer;
+}
+
+.section .container .section-module .module-detail-job .jobprocess li .process-name {
+	margin-top: 105px;
+}
+
+.section .container .section-module .module-detail-job .jobprocess .pro1 {
+	
+/* 	background-image: url(../../img/index/pro1.png); */
+}
+
+.section .container .section-module .module-detail-job .jobprocess .pro2 {
+	background-image: url(../../img/index/pro2.png);
+}
+
+.section .container .section-module .module-detail-job .jobprocess .pro3 {
+	background-image: url(../../img/index/pro3.png);
+}
+
+.section .container .section-module .module-detail-job .jobprocess .pro4 {
+	background-image: url(../../img/index/pro4.png);
+}
+
+.section .container .section-module .module-detail-job .jobprocess .pro5 {
+	background-image: url(../../img/index/pro5.png);
+}
+
+.section .container .section-module .module-detail-job .jobprocess .pro6 {
+	background-image: url(../../img/index/pro6.png);
+}
+
+.section .container .section-module .module-detail-job .jobprocess .pro7 {
+	background-image: url(../../img/index/pro7.png);
+}
+
+.section .container .section-module .module-detail-job .jobprocess .pro8 {
+	background-image: url(../../img/index/pro8.png);
+}
+
+.section .container .section-module .module-detail-job .jobprocess li .arrow {
+	position: absolute;
+	width: 0px;
+	height: 0px;
+}
+
+.section .container .section-module .module-detail-job .jobprocess li .arrow-right {
+	border-left: 20px solid #fff;
+	border-right: 20px solid transparent;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	right: -40px;
+	top: calc(50% - 20px);
+}
+
+.section .container .section-module .module-detail-job .jobprocess li .arrow-left {
+	border-left: 20px solid transparent;
+	border-right: 20px solid #fff;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	left: -40px;
+	top: calc(50% - 20px);
+}
+
+.section .container .section-module .module-detail-job .jobprocess li .arrow-down {
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #fff;
+	border-bottom: 20px solid transparent;
+	left: calc(50% - 20px);
+	bottom: -40px;
+}

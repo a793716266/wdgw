@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PostMapper">
+
+	<!--表名 -->
+	<sql id="tableName">
+		WDGW_POST
+	</sql>
+
+	<!-- 字段 -->
+	<sql id="Field">
+		POSTTYPE_ID,
+		TITLE,
+		CONTENT,
+		USER,
+		VIEWNUMBER,
+		HEAT,
+		DOWNLOADATTACHMENT,
+		RELEASEVERSION,
+		RESTORENUMBER,
+		CREATETIME,
+		CREATEUSER,
+		REMARKS,
+		POST_ID
+	</sql>
+
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{POSTTYPE_ID},
+		#{TITLE},
+		#{CONTENT},
+		#{USER},
+		#{VIEWNUMBER},
+		#{HEAT},
+		#{DOWNLOADATTACHMENT},
+		#{RELEASEVERSION},
+		#{RESTORENUMBER},
+		#{CREATETIME},
+		#{CREATEUSER},
+		#{REMARKS},
+		#{POST_ID}
+	</sql>
+
+	<!-- 新增 -->
+	<insert id="save" parameterType="pd">
+		insert into
+		<include refid="tableName"></include>
+		(
+		<include refid="Field"></include>
+		) values (
+		<include refid="FieldValue"></include>
+		)
+	</insert>
+
+	<!-- 删除 -->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where
+		POST_ID = #{POST_ID}
+	</delete>
+
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set
+		POSTTYPE_ID=#{POSTTYPE_ID},
+		TITLE = #{TITLE},
+		CONTENT = #{CONTENT},
+		USER = #{USER},
+		VIEWNUMBER = #{VIEWNUMBER},
+		HEAT = #{HEAT},
+		DOWNLOADATTACHMENT = #{DOWNLOADATTACHMENT },
+		RELEASEVERSION = #{RELEASEVERSION},
+		RESTORENUMBER = #{RESTORENUMBER},
+		REMARKS = #{REMARKS},
+		POST_ID = POST_ID
+		where
+		POST_ID = #{POST_ID}
+	</update>
+
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from
+		<include refid="tableName"></include>
+		where
+		POST_ID = #{POST_ID}
+		order by CREATETIME desc
+	</select>
+
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+			p.POSTTYPE_ID,
+			TITLE,
+			CONTENT,
+			USER,
+			VIEWNUMBER,
+			HEAT,
+			DOWNLOADATTACHMENT,
+			RELEASEVERSION,
+			RESTORENUMBER,
+			p.CREATETIME,
+			p.CREATEUSER,
+			p.REMARKS REMARKS,
+			POST_ID,
+			NICKNAME,
+			WD_USERS_ID,
+			NAME
+		from
+		WDGW_POST p
+		inner join WDGW_POSTTYPE pt on p.POSTTYPE_ID=pt.POSTTYPE_ID
+		inner join wdgw_wd_users u on u.WD_USERS_ID=p.USER
+		<where>
+			<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+				and
+				( 
+				TITLE LIKE CONCAT('%', #{pd.keywords},'%')
+				)
+			</if>
+			<if test="pd.lastStart!= null and pd.lastStart != ''">
+				and
+					(
+					p.CREATETIME >= #{pd.lastStart}
+					)
+			</if>
+			<if test="pd.lastEnd!= null and pd.lastEnd != ''">
+				and (p.CREATETIME &lt;= #{pd.lastEnd})
+			</if>
+			<if test="pd.changePostType!= null and pd.changePostType != ''">
+				and p.POSTTYPE_ID=#{pd.changePostType}
+			</if>
+		</where>
+		order by CREATETIME desc
+	</select>
+
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+			p.POSTTYPE_ID,
+			TITLE,
+			CONTENT,
+			USER,
+			VIEWNUMBER,
+			HEAT,
+			DOWNLOADATTACHMENT,
+			RELEASEVERSION,
+			RESTORENUMBER,
+			p.CREATETIME,
+			p.CREATEUSER,
+			p.REMARKS REMARKS,
+			POST_ID,
+			NICKNAME,
+			WD_USERS_ID,
+			NAME
+		from
+		WDGW_POST p
+		inner join WDGW_POSTTYPE pt on p.POSTTYPE_ID=pt.POSTTYPE_ID
+		inner join wdgw_wd_users u on u.WD_USERS_ID=p.USER
+		<where>
+			<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
+				and
+				( 
+				TITLE LIKE CONCAT('%', #{keywords},'%')
+				)
+			</if>
+			<if test="lastStart!= null and lastStart != ''">
+				and
+					(
+					p.CREATETIME >= #{lastStart}
+					)
+			</if>
+			<if test="lastEnd!= null and lastEnd != ''">
+				and (p.CREATETIME &lt;= #{lastEnd})
+			</if>
+			<if test="changePostType!= null and changePostType != ''">
+				and p.POSTTYPE_ID=#{changePostType}
+			</if>
+		</where>
+		order by CREATETIME desc
+	</select>
+
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where
+		POST_ID in
+		<foreach item="item" index="index" collection="array" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+</mapper>

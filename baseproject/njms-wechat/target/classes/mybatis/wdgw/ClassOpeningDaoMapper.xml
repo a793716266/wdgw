@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.ClassOpeningDao">
+
+
+	<!-- 根据班级类型连合查询 -->
+	<select id="findByCtype_union"  parameterType="list" resultType="com.flc.entity.ClassOpening">
+		<foreach collection="list" item="item" separator=" UNION ALL " index="index">
+			SELECT * FROM
+			(
+				select 
+					`CLASSOPENING_ID`,`CTYPE`,`CLASSSTATE`,`CLASSTYPENAME`,`CLASSNUMBER`,`RESERVSSTATE`,`CREATETIME`
+				from 
+					wdgw_classopening 
+				where 
+					CTYPE = #{item} 
+				ORDER BY `CREATETIME` DESC limit 0,6
+			) AS a#{index}
+		</foreach>
+	</select>
+	
+	<!--查询所有班级类型名称，去重复 -->
+	<select id="findByC_type"  resultType="string">
+		SELECT `CTYPE` FROM `Wdgw_classOpening` GROUP BY course HAVING COUNT(`CTYPE`)>=1
+	</select>
+</mapper>

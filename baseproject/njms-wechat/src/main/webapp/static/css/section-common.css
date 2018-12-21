@@ -1,0 +1,24 @@
+.section {
+	width: 100%;
+}
+
+.section-module .module-title {
+	width: 520px;
+	height: 90px;
+	margin-left: calc(50% - 260px);
+	margin-top: 60px;
+}
+
+.section-module .module-title.title-sm {
+	width: 140px;
+	height: 30px;
+	margin-left: calc(50% - 70px);
+}
+
+.section .container .section-module {
+	width: 100%;
+}
+
+.section .container .section-module .module-detail {
+	margin-top: 50px;
+}

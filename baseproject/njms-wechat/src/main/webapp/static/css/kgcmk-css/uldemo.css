@@ -1,0 +1,50 @@
+        .uldemo {
+        	position: absolute;
+        	top: 50px;
+        	width: 400px;
+        	position: relative;
+        	height: 62px;
+        	display: flex;
+        	border-radius: 3px;
+        }
+        
+        .uldemo-lcon {
+        	width: 62px;
+        	height: 62px;
+        	background-size: 100% 100%;
+        	border-radius: 3px;
+        }
+        
+        .uldemo-text {
+        	width: 220px;
+        	height: 42px;
+        	display: flex;
+        	position: absolute;
+        	line-height: 62px;
+        	left: 87px;
+        	border-radius: 3px;
+        }
+        
+        .uldemo-text-t {
+        	font-size: 38px;
+        }
+        
+        .interval-w {
+        	width: 100%;
+        	background: #FFFFFF;
+        }
+        
+        .interval-w-stoom {
+        	width: 100%;
+        	
+        	background: #EFEFEF;
+        }
+        
+        .interval-stoom {
+        	width: 1200px;
+        	margin: 0 auto;
+        	position: relative;
+        	height: 150px;
+        	border-radius: 3px;
+        	background: #EFEFEF;
+        }

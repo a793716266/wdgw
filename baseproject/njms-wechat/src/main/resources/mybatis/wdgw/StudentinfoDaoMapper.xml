@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.StudentinfoDao">
+	<!-- 查询前十的高薪就业学生-->
+	<select id="findTop10" resultType="com.flc.entity.Studentinfo">
+		select 
+			`name`,`companyname`,`SALARY`
+		from  `Wdgw_studentinfo` 
+			order by `SALARY` desc limit 0,10
+	</select>
+	
+	<!-- 查询近期就业学生-->
+	<select id="findJobStudent" parameterType="map" resultType="com.flc.entity.Studentinfo">
+		select 
+			`name`,`companyname`,`SALARY`,`GETJOBTIME`
+		from  `Wdgw_studentinfo` 
+		where GETJOBTIME > #{time}
+			order by `SALARY`desc,GETJOBTIME desc 
+		<if test="pageEnd != null and pageEnd != ''">
+			limit #{pageFirst},#{pageEnd}
+		</if>
+	</select>
+	
+	<!-- 查询近期就业学生总数-->
+	<select id="countJobStudent" parameterType="string" resultType="int">
+		SELECT 
+			COUNT(`STUDENTINFO_ID`)
+		FROM  `Wdgw_studentinfo` 
+		WHERE GETJOBTIME > #{time}
+	</select>
+	
+</mapper>

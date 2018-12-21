@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.EmploymentclassDao">
+	<resultMap type="com.flc.entity.Employmentclass" id="employmentclassMap">
+		<id column="employmentclass_id" property="employmentclass_id"/>
+		<result column="className" property="className"/>
+		<result column="maxSalary" property="maxSalary"/>
+		<result column="avgSalary" property="avgSalary"/>
+		<result column="C_TYPE" property="course" />
+		<result column="COURSE" property="systemType" />
+		<result column="classType" property="classType" />
+		<result column="CLASSLOGO" property="classLogo" />
+	</resultMap>
+	<select id="findTop10" resultMap="employmentclassMap">
+		SELECT `EMPLOYMENTCLASS_ID`,`CLASSNAME`,`CLASSTYPE`,`MAXSALARY`,`AVGSALARY`,`TEACHERS`,`CLASSCHARGE`,`C_TYPE`,`CLASSLOGO` AS CLASSLOGO,`SYSTEMTYPE`
+		FROM `wdgw`.`wdgw_employmentclass` e
+		INNER JOIN `wdgw_classtype` c
+		ON(e.`CLASSTYPE` = c.`CLASSTYPENAME`)
+	</select>
+</mapper>

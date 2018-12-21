@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.CommentDao">
+	<resultMap type="com.flc.entity.Comment" id="comments">
+		<id property="comment_id" column="comment_id"/>
+		<result property="commentUser" column="commentUser" />
+		<result property="content" column="content" />
+		<result property="course" column="course" />
+		<result property="createTime" column="createTime" />
+		<result property="createUser" column="createUser" />
+		<result property="remarks" column="remarks" />
+		<collection property="users" ofType="com.flc.entity.Users">
+			<id property="wd_users_id" column="wd_users_id"/>
+			<result property="nickName" column="nickName"/>
+			<result property="pictuer" column="pictuer"/>
+		</collection>
+	</resultMap>
+
+	<select id="findTop3" resultMap="comments" parameterType="map">
+		select 
+			c.*,u.WD_USERS_ID,u.NICKNAME,u.PICTURE AS picture
+		FROM  `wdgw_comment`  c INNER JOIN wdgw_wd_users u
+		ON c.`COMMENTUSER` = u.`WD_USERS_ID`
+		<where>
+			<if test="type != null and type != ''">
+				course = #{type}
+			</if>
+		</where>
+			ORDER BY c.`CREATEUSER` DESC 
+		    limit 0,10
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.BroadcastDao">
+	<!-- 查询前十的高薪就业班级-->
+	<select id="findPicture" resultType="com.flc.entity.Broadcast">
+		SELECT
+ 		 `BROADCAST_ID`,`PICTUREPATH` as PICTUREPATH,`PICTURESTATE`,`CREATEUSER`,`REMARKS`,`CREATETIME`
+		FROM `wdgw`.`wdgw_broadcast` WHERE `BroadcastPage`= #{broadcastPage} AND PICTURESTATE = 1
+		order by CREATETIME desc limit 0,3
+	</select>
+</mapper>

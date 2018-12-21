@@ -1,0 +1,154 @@
+.section .container .section-module .module-detail {
+	position: relative;
+}
+
+.section .container .section-module .module-detail .clz-top {
+	text-align: center;
+}
+
+.section .container .section-module .module-detail .rotateContainer {
+	width: 895px;
+	overflow: hidden;
+}
+.section .container .section-module .module-detail .joblist .rotateContainer .joblist-nav.swiper-wrapper{
+	 transition-timing-function: linear;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist {
+	width: 895px;
+	height: 290px;
+	position: relative;
+}
+
+
+
+.section .container .section-module .module-detail .rotateContainer .rotateBtn {
+	position: absolute;
+	width: 36px;
+	height: 30px;
+	top: calc(50% - 15px);
+	transition: background-image 0.2s;
+	z-index: 9999;
+	cursor: pointer;
+	display: none;
+}
+
+.section .container .section-module .module-detail .rotateContainer .btnPrev {
+	background: url(../../img/index/prev.png) no-repeat center center;
+	background-size: 100% 100%;
+	left: 0px;
+}
+
+.section .container .section-module .module-detail .rotateContainer .btnPrev:hover {
+	background: url(../../img/index/prev-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .module-detail .rotateContainer .btnNext {
+	background: url(../../img/index/next.png) no-repeat center center;
+	background-size: 100% 100%;
+	left: 859px;
+}
+
+.section .container .section-module .module-detail .rotateContainer .btnNext:hover {
+	background: url(../../img/index/next-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-icon {
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	margin-left: calc(50% - 45px);
+	margin-top: 25px;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-icon-KU {
+	background: url(../../img/index/KU.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-icon-KW {
+	background: url(../../img/index/KW.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-icon-KD {
+	background: url(../../img/index/KD.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li {
+	width: 222px;
+	height: 290px;
+	float: left;
+	background-color: #fff;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-bottom {
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-bottom div {
+	margin-top: 6px;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-name {
+	margin-top: 10px;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-line {
+	width: 45px;
+	height: 4px;
+	margin-left: calc(50% - 22px);
+	margin-top: 15px;
+	border-radius: 2px;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-KU-line {
+	background-color: #9BB700;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-KW-line {
+	background-color: #FF494B;
+}
+
+.section .container .section-module .module-detail .rotateContainer .clzlist li .clz-top .clz-KD-line {
+	background-color: #FE9515;
+}
+
+.section .container .section-module .module-detail .joblist {
+	width: 286px;
+	height: 50px;
+}
+
+.section .container .section-module .module-detail .joblist .joblist-title {
+	background-color: #fff;
+	text-align: center;
+	line-height: 50px;
+}
+.section .container .section-module .module-detail .joblist .rotateContainer{
+	height: 235px;
+	width: 286px;
+	margin-top: 5px;
+	background-color: #fff;
+}
+.section .container .section-module .module-detail .joblist .rotateContainer .joblist-nav {
+	width: 286px;
+}
+
+.section .container .section-module .module-detail .joblist .rotateContainer .joblist-nav li {
+	width: 286px;
+}
+
+.section .container .section-module .module-detail .joblist .rotateContainer .joblist-nav li .stu-name {
+	margin-left: 20px;
+}
+
+.section .container .section-module .module-detail .joblist .rotateContainer .joblist-nav li .job-salary {
+	margin-right: 20px;
+	width:100px;
+}

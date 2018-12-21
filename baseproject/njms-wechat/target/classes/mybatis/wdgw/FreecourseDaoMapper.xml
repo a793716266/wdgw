@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.FreecourseDao">
+	<!-- 查询免费的课程-->
+	<select id="findfreecourse"  resultType="com.flc.entity.Freecourse"  parameterType="map">
+		SELECT  `PICTURENAME` as PICTURENAME,TITLE,COURSE,ISFREE,URL FROM wdgw_video 
+		<where>
+			<if test="course != null and course != ''">
+				COURSE = #{course}
+			</if>
+		</where>
+		<if test="page != null and page != ''">
+				ORDER BY `createtime` DESC LIMIT 0,#{page}
+			</if>
+	</select>
+</mapper>

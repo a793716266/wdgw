@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.PhoneCodeDao">
+	<insert id="insert" parameterType="com.flc.entity.PhoneCode">
+		INSERT INTO `wdgw`.`wdgw_phonecode`
+            (`PHONECODE_ID`,
+             `PHONE_NUMBER`,
+             `PHONE_CODE`,
+             `CREATETIME`)
+		VALUES (#{phoneCode_id},
+		        #{phone_number},
+		        #{phone_code},
+		        #{createtime})
+	</insert>
+	<update id="update" parameterType="com.flc.entity.PhoneCode">
+		UPDATE `wdgw`.`wdgw_phonecode`
+		SET
+		  `PHONE_NUMBER` = #{phone_number},
+		  `PHONE_CODE` = #{phone_code},
+		  `CREATETIME` = #{createtime},
+		  `CREATEUSER` = #{createuser},
+		  `REMARKS` = #{remarks}
+		WHERE `PHONECODE_ID` = #{phoneCode_id}
+	</update>
+	<delete id="delete" parameterType="map">
+		DELETE
+		FROM `wdgw`.`wdgw_phonecode`
+		<where>
+			<if test="phone_number != null and phone_number.length()>0">
+				AND `PHONE_NUMBER` = #{phone_number}
+			</if>
+		</where>
+	</delete>
+	<select id="select" parameterType="map" resultType="com.flc.entity.PhoneCode">
+		SELECT
+		  `PHONECODE_ID`,
+		  `PHONE_NUMBER`,
+		  `PHONE_CODE`,
+		  `CREATETIME`,
+		  `CREATEUSER`,
+		  `REMARKS`
+		FROM `wdgw`.`wdgw_phonecode`
+		WHERE `PHONE_NUMBER` = #{phone_number}
+	</select>
+</mapper>

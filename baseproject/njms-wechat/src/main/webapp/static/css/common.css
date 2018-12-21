@@ -1,0 +1,189 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	font-family: "微软雅黑";
+	color: #333;
+	font-size: 14px;
+}
+
+body {
+	background-color: #EFEFEF;
+	overflow-x: hidden;
+}
+
+.bg-common {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.container {
+	width: 1200px;
+	margin: 0px auto;
+}
+
+.displayFlex {
+	display: flex;
+}
+
+.font-md {
+	font-size: 16px;
+}
+
+.font-lg {
+	font-size: 22px;
+}
+
+.font-max {
+	font-size: 27px;
+}
+
+.space-between {
+	display: flex;
+	justify-content: space-between;
+}
+
+.a-default {
+	color: #A3A3A3;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.a-default:hover {
+	text-decoration: underline;
+}
+
+.text-lightgrey {
+	color: #B0B0B0;
+}
+
+.text-salary {
+	color: #ff7a17;
+}
+.btn-know a{
+	display: block;
+	position: absolute;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+}
+.btn-know {
+	width: 100px;
+	height: 30px;
+		position: relative;
+	border: 1px solid orange;
+	color: orange;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 30px;
+	margin-left: calc(50% - 50px);
+	margin-top: 15px;
+	cursor: pointer;
+	transition: all 0.1s;
+}
+
+.btn-know:hover {
+	border-color: transparent;
+	color: #fff;
+	background-color: orange;
+}
+
+.fixed {
+	position: fixed;
+	right: 250px;
+	z-index: 9999;
+	top: calc(50% - 100px);
+}
+
+.fixed li {
+	width: 50px;
+	height: 50px;
+	margin-top: 10px;
+	border-radius: 2px;
+	background-color: rgba(0, 0, 0, .35);
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.fixed li:hover {
+	background-color: #FF494B;
+}
+
+.fixed .msg {
+	background-image: url(../img/index/msg.png);
+	background-size: 50% 50%;
+}
+
+.fixed .qa {
+	background-image: url(../img/index/qa.png);
+	background-size: 50% 50%;
+}
+
+.fixed .talk {
+	background-image: url(../img/index/talk.png);
+	background-size: 50% 50%;
+}
+
+.fixed .top {
+	background-image: url(../img/index/up.png);
+	background-size: 50% 30%;
+	display:none;
+}
+
+.xiaolunbo {
+	width: 100%;
+	height: 350px !important;
+	margin-top: 30px;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+}
+
+.xiaolunbo .xiaolunbolist {
+	height: 350px;
+}
+
+.xiaolunbo .xiaolunbolist li {
+	width: 1200px;
+	height: 350px;
+	float: left;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100% 100%;
+	transition: all 0.3s;
+}
+
+.xiaolunbo .btnPrev {
+	background: url(../img/index/prev.png) no-repeat center center;
+	background-size: 100% 100%;
+	left: 0px;
+}
+
+.xiaolunbo .btnPrev:hover {
+	background: url(../img/index/prev-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.xiaolunbo .btnNext {
+	background: url(../img/index/next.png) no-repeat center center;
+	background-size: 100% 100%;
+	right: 0px;
+}
+
+.xiaolunbo .btnNext:hover {
+	background: url(../img/index/next-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.xiaolunbo .rotateBtn {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: calc(50% - 25px);
+	opacity: 0.7;
+	display: none;
+	transition: background-image 0.2s;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.flc.dao.PostsDao">
+	<select id="findAllPosts" resultType="com.flc.entity.Posts">
+		SELECT
+			 p.post_id,t.NAME,p.TITLE,p.VIEWNUMBER,p.RESTORENUMBER,p.CREATETIME,t.`POSTTYPE_ID` as postType_id
+		FROM 
+			`wdgw_post` AS p
+		JOIN 
+			`wdgw_posttype` AS t
+		ON 
+			p.POSTTYPE_ID=t.POSTTYPE_ID
+		JOIN 
+			`wdgw_wd_users` AS u
+		ON 
+			p.user= u.wd_users_id
+		WHERE 
+			1=1
+		<if test="userId != null and userId != ''">
+			and  u.WD_USERS_ID = '${userId}'
+		</if>
+			
+		ORDER BY
+			CREATETIME DESC
+		limit ${pageNo},${count} 
+		
+		
+	</select>
+	
+	<delete id="delPosts"  parameterType="pd">
+		DELETE FROM 
+			`wdgw_post` 
+		WHERE 
+			post_id = #{post_id}
+	</delete>
+	
+
+
+</mapper>

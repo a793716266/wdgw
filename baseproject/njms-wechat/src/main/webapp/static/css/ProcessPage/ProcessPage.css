@@ -1,0 +1,244 @@
+.maxBox {
+	width: 100%;
+	background: #EFEFEF;
+}
+
+/* li:hover{
+	cursor: pointer;
+	transition: all 0.2s;
+	background-size: 110% 110% !important;
+} */
+
+.big-topbox {
+	margin: 20px auto;
+	height: 300px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.topbox-small-box {
+	width: 380px;
+	height: 300px;
+	background-color: white;
+}
+
+.small-box-title {
+	width: 380px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 22px;
+	color: #6D6D6D;
+	text-indent: 22px;
+	border-left: solid 3px #9DB700;
+	border-bottom: solid 1.5px #EFEFEF;
+}
+
+.small-box-ulbox {
+	width: 380px;
+	height: 247px;
+	box-sizing: border-box;
+	padding: 12px 15px 15px;
+}
+
+.small-box-ulbox>li {
+	list-style: disc;
+	list-style-position: inside;
+	height: 38px;
+}
+
+.small-box-ulbox>li>div {
+	display: inline-block;
+	color: #A3A3A3;
+}
+.small-box-ulbox>li>div:last-of-type{
+	cursor: not-allowed;
+}
+
+.liboxOne {
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+}
+
+.liboxTwo {
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+}
+
+.liboxLast {
+	width: 70px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+	text-align: center;
+	border: solid 1px #666666;
+}
+
+.small-box-ulbox>li div.active {
+	cursor: pointer;
+	color: white;
+	background-color: orange;
+	border: none;
+}
+
+
+/*第二部分样式*/
+
+.big-content-zuo {
+	box-sizing: border-box;
+	height: 200px;
+	width: 1190px;
+	background: white;
+	margin: auto;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: row;
+}
+
+.baoyuanbox {
+	width: 72px;
+	background-color: #EFEFEF;
+}
+
+.yuanbox {
+	width: 144px;
+	height: 144px;
+	border: solid 3px #EFEFEF;
+	transform: translateY(26px);
+	border-radius: 50%;
+	
+}
+
+.rightbox {
+	width: 350px;
+	height: 180px;
+	background-color: white;
+	margin: 20px 40px 0 100px;
+}
+
+.rightbox-num {
+	color: #FF9517;
+	font-size: 22px;
+	height;
+	35px;
+	line-height: 35px;
+}
+
+.rightbox-title {
+	color: #363636;
+	font-size: 22px;
+	height;
+	35px;
+	line-height: 35px;
+}
+
+.right-content {
+	line-height: 22px;
+	color: #8A8A8A;
+	font-size: 14px;
+	margin-top: 15px;
+}
+
+.edgebox {
+	height: 200px;
+	width: 600px;
+}
+
+.edgebox>ul {
+	list-style: none;
+	display: flex;
+	float: left;
+}
+
+.edgebox>ul>li {
+	width: 200px;
+	height: 200px;
+	margin-right: 5px;
+	background: url(../../img/ProcessPage/Contract.png)center center no-repeat;
+}
+
+
+
+.big-content-you {
+	box-sizing: border-box;
+	height: 200px;
+	width: 1190px;
+	background: white;
+	margin: auto;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: row;
+}
+
+.content-you-edgebox {
+	height: 200px;
+	width: 600px;
+}
+
+.content-you-edgebox>ul {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+}
+
+.content-you-edgebox>ul {
+	list-style: none;
+	display: flex;
+	float: left;
+}
+
+.content-you-edgebox>ul>li {
+	width: 200px;
+	height: 200px;
+	margin-left: 20px;
+	background: url(../../img/ProcessPage/Contract.png)center center no-repeat;
+}
+
+.content-you-middlebox {
+	width: 330px;
+	height: 180px;
+	margin: 20px 25px 0 100px;
+}
+
+.content-you-wai {
+	width: 155px;
+	height: 200px;
+	box-sizing: border-box;
+	background-color: #EFEFEF;
+	position: relative;
+}
+
+.you-wai-bai {
+	height: 200px;
+	width: 72px;
+	background: white;
+}
+
+.you-waiyuan {
+	width: 144px;
+	height: 144px;
+	/*background: white url(../../img/ProcessPage/pro2.png)center center no-repeat;*/
+	border-radius: 50%;
+	border: solid 3px #EFEFEF;
+	position: absolute;
+	top: 30px;
+}
+
+.footer-bottom-last{
+	margin-bottom: 50px;
+}
+
+.ul li{
+	border-radius: 10px;
+	transition: all 0.3s;
+	background-size: 100% 100%;
+}
+
+.ul li:hover{
+	background-size: 110% 110%;
+}
+

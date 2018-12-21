@@ -1,0 +1,58 @@
+.section .container .section-module .module-detail-biz {
+	position: relative;
+}
+
+.section .container .section-module .module-detail-biz .biz {
+	width: 580px;
+	height: 380px;
+	border-radius: 10px;
+}
+
+.section .container .section-module .module-detail-biz .biz .biz-title {
+	height: 55px;
+	text-align: center;
+	line-height: 55px;
+	color: #fff;
+}
+
+.section .container .section-module .module-detail-biz .biz-train {
+	background: url(../../img/index/train.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .module-detail-biz .biz-notrain {
+	background: url(../../img/index/notrain.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .module-detail-biz .biz-notrain .biz-infolist {
+	margin-left: 250px;
+}
+
+.section .container .section-module .module-detail-biz .vs {
+	position: absolute;
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
+	left: calc(50% - 70px);
+	top: calc(50% - 70px);
+	background: url(../../img/index/vs.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .module-detail-biz .biz .biz-infolist {
+	width: 330px;
+	height: 330px;
+}
+
+.section .container .section-module .module-detail-biz .biz-train .biz-infolist {
+	margin-left: 20px;
+}
+
+.section .container .section-module .module-detail-biz .biz .biz-infolist li {
+	margin-top: 35px;
+}
+
+.section .container .section-module .module-detail-biz .biz .biz-infolist li .bizinfo-title {
+	width: 160px;
+}

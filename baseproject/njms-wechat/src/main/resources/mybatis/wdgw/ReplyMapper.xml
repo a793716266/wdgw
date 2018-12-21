@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.ReplypostDao">
+
+<!-- 帖子回复 -->
+
+	<insert id="addReply" parameterType="com.flc.entity.PostReturn">
+		INSERT INTO `wdgw`.`wdgw_postreturn`
+            (`POSTRETURN_ID`,
+             `POSTID`,
+             `USERID`,
+             `COMMENCONTENT`,
+             `COMMENTFLOOR`,
+             `COMMENTTIME`,
+             `REPLIERID`,
+             `LEVEL`,
+             `CREATEUSER`,
+             `CREATETIME`,
+             `REMARKS`)
+		VALUES (#{postReturn_id},
+		        #{postId},
+		        #{userId},
+		        #{commenContent},
+		        #{commentFloor},
+		        #{commentTime},
+		        #{replierid},
+		        #{level},
+		        #{createuser},
+		        #{createtime},
+		        #{remark })
+	</insert>
+    
+	<!-- 查询总楼层数量 -->
+	<select id="countReply" parameterType="String" resultType="int">
+		select count(`POSTRETURN_ID`) from `wdgw_postreturn` where `POSTID` = #{postid} and `LEVEL` = 0
+	</select>
+	<select id="checkhostrep" resultType="com.flc.entity.PostReturn">
+		 SELECT postId,userId,commenContent,createtime,(SELECT nickname FROM wdgw_wd_users WHERE wdgw_wd_users.`WD_USERS_ID`=wdgw_postreturn.userid)nickname,replierid,(SELECT picture FROM wdgw_wd_users WHERE wdgw_wd_users.`WD_USERS_ID`=wdgw_postreturn.userid)picture,MAX(LEVEL) FROM wdgw_postreturn  GROUP BY postId  ORDER BY LEVEL DESC LIMIT 0,5
+	</select>
+	
+	<!-- 根据帖子id查询出楼主的回复-->
+	<select id="findPostreturnFloor" parameterType="String" resultType="com.flc.entity.PostReturn">
+			SELECT
+		  `POSTRETURN_ID` AS postReturn_id,
+		  `POSTID` AS postId,
+		  `USERID` AS userId,
+		  user1.`NICKNAME` AS nickname,
+		  user1.`PICTURE` AS picture,
+		  user2.`NICKNAME` AS rNickname,
+		  user2.`PICTURE` AS rPicture,
+		  `COMMENCONTENT` AS commenContent,
+		  `COMMENTFLOOR` AS commentFloor,
+		  `COMMENTTIME` AS commentTime,
+		  `REPLIERID` AS replierid,
+		  `LEVEL` AS LEVEL,
+		  pr.`CREATEUSER` AS createuser,
+		  pr.`CREATETIME` AS createtime,
+		  pr.`REMARKS` AS remark
+		
+		FROM `wdgw`.`wdgw_postreturn` AS pr
+		INNER JOIN `wdgw_wd_users` AS `user1`
+		ON pr.userid = `user1`.`WD_USERS_ID`
+		INNER JOIN `wdgw_wd_users` AS `user2`
+		ON pr.REPLIERID = `user2`.`WD_USERS_ID`
+		
+		WHERE pr.POSTID = #{postid}
+		AND  pr.COMMENTFLOOR = 1
+		ORDER BY `LEVEL`
+	</select> 
+	
+	<!-- 根据帖子id查询楼主对应回复数 -->
+	<select id="findFloorPostreturns" parameterType="String" resultType="int">
+		SELECT COUNT(`POSTRETURN_ID`) FROM `wdgw_postreturn`
+		 WHERE `POSTID` = #{postid} AND 
+		`LEVEL` NOT IN(0) AND `COMMENTFLOOR` = 1
+	</select> 
+	
+	<!-- 根据帖子id查询出所有楼层以及回复数 -->
+	<select id="findPostreturnbottomFloor" parameterType="map" resultType="com.flc.entity.PostReturn">
+		SELECT
+		  `POSTRETURN_ID` as postReturn_id,
+		  `POSTID` as postId,
+		  `USERID` as userId,
+		   user1.`NICKNAME` AS nickname,
+		  user1.`PICTURE` AS picture,
+		  user2.`NICKNAME` AS rNickname,
+		  user2.`PICTURE` AS rPicture,
+		  `COMMENCONTENT` as commenContent,
+		  `COMMENTFLOOR` as commentFloor,
+		  `COMMENTTIME` as commentTime,
+		  `REPLIERID` as replierid,
+		  `LEVEL` as level,
+		  pr.`CREATEUSER` as createuser,
+		  pr.`CREATETIME` as createtime,
+		  pr.`REMARKS` as remark,
+		  (SELECT COUNT(`POSTRETURN_ID`) FROM `wdgw_postreturn`
+		  WHERE `POSTID` = pr.POSTID AND 
+		`LEVEL` NOT IN(0) and `COMMENTFLOOR` = pr.`COMMENTFLOOR`) as replyCount
+		
+		FROM `wdgw`.`wdgw_postreturn` AS pr
+		INNER JOIN `wdgw_wd_users` AS `user1`
+		ON pr.userid = `user1`.`WD_USERS_ID`
+		INNER JOIN `wdgw_wd_users` AS `user2`
+		ON pr.REPLIERID = `user2`.`WD_USERS_ID`
+		
+		WHERE pr.POSTID = #{postid}
+		AND pr.`LEVEL` = 0
+		and  pr.COMMENTFLOOR > 1
+		order by pr.COMMENTFLOOR
+		
+		limit #{pageStart},#{pageEnd}
+	</select>
+	
+	<!-- 根据帖子id查询出所有楼层对应的回复 -->
+	<select id="findbottomPostreturns" parameterType="map" resultType="com.flc.entity.PostReturn">
+		SELECT
+		  `POSTRETURN_ID` AS postReturn_id,
+		  `POSTID` AS postId,
+		  `USERID` AS userId,
+		  user1.`NICKNAME` AS nickname,
+		  user1.`PICTURE` AS picture,
+		  user2.`NICKNAME` AS rNickname,
+		  user2.`PICTURE` AS rPicture,
+		  `COMMENCONTENT` AS commenContent,
+		  `COMMENTFLOOR` AS commentFloor,
+		  `COMMENTTIME` AS commentTime,
+		  `REPLIERID` AS replierid,
+		  `LEVEL` AS LEVEL,
+		  pr.`CREATEUSER` AS createuser,
+		  pr.`CREATETIME` AS createtime,
+		  pr.`REMARKS` AS remark
+		
+		FROM `wdgw`.`wdgw_postreturn` AS pr
+		INNER JOIN `wdgw_wd_users` AS `user1`
+		ON pr.userid = `user1`.`WD_USERS_ID`
+		INNER JOIN `wdgw_wd_users` AS `user2`
+		ON pr.REPLIERID = `user2`.`WD_USERS_ID`
+		
+		WHERE pr.POSTID = #{postid}
+		AND  pr.COMMENTFLOOR = #{commentfloor}
+		AND `LEVEL` NOT IN(0)
+		
+		ORDER BY `LEVEL`
+	</select>  
+	
+	
+
+	
+
+	
+</mapper>

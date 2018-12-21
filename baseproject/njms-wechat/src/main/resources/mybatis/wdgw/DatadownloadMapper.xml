@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.DatadownloadDao">
+
+	<select id="findDatadownload" parameterType="map" resultType="com.flc.entity.Datadownload">
+		SELECT
+		  `DATADOWNLOAD_ID`,
+		  `DATANAME`,
+		  `DATASIZE`,
+		  `KANBOXURL`,
+		  `LOOKINTRODUCEURL`,
+		  `DOWNLOADCOUNT`,
+		  `CREATEUSER`,
+		  `CREATETIME`,
+		  `REMARKS`
+		FROM `wdgw`.`wdgw_datadownload`
+		ORDER BY CREATETIME DESC
+		<if test="pageEnd != null and pageEnd != ''">
+			limit #{pageFirst},#{pageEnd}
+		</if>
+		
+	</select>
+	
+	<select id="countDatadownload" resultType="int">
+		SELECT COUNT(`DATADOWNLOAD_ID`) FROM `wdgw`.`wdgw_datadownload`
+	</select>
+	
+</mapper>

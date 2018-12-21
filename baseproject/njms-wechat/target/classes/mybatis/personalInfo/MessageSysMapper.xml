@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.MessageSysDao">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		wdgw_messages
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+	  MNAME,
+	  MTEXT,
+	  MCREATETIME,
+	  MCREATEUSER
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{MNAME},
+		#{MTEXT},
+	    #{MCREATETIME},
+	    #{MCREATEUSER}
+	</sql>
+
+	<!-- 列表 -->
+	<select id="MessfindAll" resultType="com.flc.entity.MessageSys">
+		SELECT
+			<include refid="Field"></include>
+		FROM 
+			<include refid="tableName"></include>
+		order by MCREATETIME DESC
+	</select>
+</mapper>

@@ -1,0 +1,160 @@
+::-webkit-input-placeholder {
+	/* WebKit, Blink, Edge */
+	color: #c3c3c3;
+}
+
+:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #c3c3c3;
+}
+
+::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #c3c3c3;
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #c3c3c3;
+}
+
+.accountContainer {
+	width: 400px;
+	height: 524px;
+	background-color: #CEE7EE;
+	margin-left: 1100px;
+	background: #CEE7EE;
+	margin-top: 180px;
+	position: absolute;
+	border-radius: 10px;
+}
+
+.accountContainer input {
+	outline: none;
+	border: none;
+	width: 300px;
+	font-size: 16px;
+	text-indent: 1em;
+	color: #B5B5B6;
+	line-height: 50px;
+}
+
+.loginTitle {
+	height: 90px;
+	font-size: 30px;
+	line-height: 90px;
+	text-align: center;
+}
+
+.loginInput {
+	width: 350px;
+	height: 50px;
+	margin: 0px auto;
+	background: #fff;
+	display: flex;
+	overflow: hidden;
+	border-radius: 3px;
+}
+
+.loginInput.password,
+.loginInput#btnlogin,
+.loginInput.toRegister {
+	margin-top: 25px;
+}
+
+.loginInput#btnlogin {
+	border: none;
+	background-color: #FE9515;
+	color: #FFF;
+	text-align: center;
+	display: block;
+	font-size: 20px;
+	line-height: 25px;
+	cursor: pointer;
+	transition: all 0.15s;
+}
+
+.loginInput#btnlogin:hover {
+	background-color: #FD6500;
+}
+
+.loginicon {
+	width: 50px;
+	height: 50px;
+	border-right: 1px solid #eee;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 50% 60%;
+}
+
+.loginicon.account {
+	background-image: url(../../img/account/account.png);
+}
+
+.loginicon.password {
+	background-image: url(../../img/account/password.png);
+}
+
+.loginInput.toRegister {
+	background-color: transparent;
+	line-height: 40px;
+	position: relative;
+}
+
+.loginInput.toRegister div {
+	position: absolute;
+	right: 0px;
+	color: #6F6E6D;
+}
+
+.loginInput.toRegister div a {
+	text-decoration: none;
+	color: #3FADE3;
+}
+
+.loginInput.toRegister div a:hover {
+	text-decoration: underline;
+	color: #1399E0;
+}
+
+.thirdLogin {
+	height: 130px;
+	border-top: 1px solid #A7ABAB;
+	margin-top: 25px;
+	position: relative;
+}
+
+.thirdLoginTitle {
+	width: 100px;
+	text-align: center;
+	background: #CEE7EE;
+	margin: -12px auto;
+	color: #A7ABAB;
+}
+
+.btnThirdLogin {
+	position: absolute;
+	width: 76px;
+	height: 76px;
+	border-radius: 50%;
+	cursor: pointer;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	transition: all 0.15s;
+	top: calc(50% - 38px);
+}
+
+.btnThirdLogin#btnwechat {
+	background-image: url(../../img/account/wechat.png);
+	left: calc(50% - 120px);
+}
+
+.btnThirdLogin#btnqq {
+	background-image: url(../../img/account/qq.png);
+	left: calc(50% + 45px);
+}
+
+.btnThirdLogin:hover {
+	filter: brightness(85%);
+}

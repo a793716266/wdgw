@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.PostingDao">
+	<!--  查询帖子热门话题 -->
+	<select id="postList" parameterType="string" resultType="com.flc.entity.Posting">
+		SELECT
+
+			post.POST_ID AS pid,
+			posttype.`NAME` AS NAME,
+			post.TITLE AS title,
+			posttype.REPLYCARD AS replycard,
+			post.CONTENT AS content,
+			users.NICKNAME AS nickname,
+			users.`PICTURE` AS picture,
+			users.`WD_USERS_ID` AS userid,
+			post.VIEWNUMBER AS viewnumber,
+			post.`CREATETIME` AS createtime,
+
+			post.POST_ID as post_id,
+			posttype.`NAME` as name,
+			post.TITLE as title,
+			posttype.REPLYCARD as replycard,
+			post.CONTENT as content,
+			users.NICKNAME as nickname,
+			post.VIEWNUMBER as viewnumber,
+
+			users.WD_USERS_ID as userid,
+			TIMESTAMPDIFF(SECOND, post.`CREATETIME`,NOW()) AS timeDiff
+		FROM
+			wdgw_posttype AS posttype
+		JOIN 
+			 wdgw_post AS post 
+		ON posttype.POSTTYPE_ID = post.POSTTYPE_ID
+		JOIN
+			wdgw_wd_users AS users
+		ON
+			 users.WD_USERS_ID = post.`USER`
+			 where 1=1
+		<if test="pid !=null and pid != ''"><!-- 关键词检索 -->
+			and 
+				POST_ID =#{pid}
+		</if>
+		order by post.heat desc,post.`RESTORENUMBER` desc
+		limit 0, 10;
+	</select>
+	
+	<!-- 按条件查询帖子 -->
+	<select id="list" parameterType="map" resultType="com.flc.entity.Posting">
+		select * from wdgw_posttype 
+	</select>
+	<!-- 删除指定帖子 -->
+	<delete id="delete" parameterType="map">
+		DELETE
+		FROM
+		  `wdgw`.`wdgw_post`
+		WHERE `POST_ID` = #{POST_ID}
+	</delete>
+	<!-- 更新指定帖子 -->
+	<update id="update" parameterType="com.flc.entity.Posting">
+		UPDATE
+		  `wdgw`.`wdgw_post`
+		SET
+		  `POSTTYPE_ID` = #{POSTTYPE_ID},
+		  `TITLE` = #{TITLE},
+		  `CONTENT` = #{CONTENT},
+		  `USER` = #{USER},
+		  `VIEWNUMBER` = #{VIEWNUMBER},
+		  `HEAT` = #{HEAT},
+		  `DOWNLOADATTACHMENT` = #{DOWNLOADATTACHMENT},
+		  `RELEASEVERSION` = #{RELEASEVERSION},
+		  `RESTORENUMBER` = #{RESTORENUMBER},
+		  `CREATETIME` = #{CREATETIME},
+		  `CREATEUSER` = #{CREATEUSER},
+		  `REMARKS` = #{REMARKS}
+		WHERE `POST_ID` = #{POST_ID}
+	</update>
+	<!-- 新增帖子 -->
+	<insert id="insert" parameterType="com.flc.entity.Posting">
+		INSERT INTO `wdgw`.`wdgw_post` (
+		  `POST_ID`,
+		  `POSTTYPE_ID`,
+		  `TITLE`,
+		  `CONTENT`,
+		  `USER`,
+		  `VIEWNUMBER`,
+		  `HEAT`,
+		  `DOWNLOADATTACHMENT`,
+		  `RELEASEVERSION`,
+		  `RESTORENUMBER` ,
+		  `CREATETIME` ,
+		  `CREATEUSER`,
+		  `REMARKS`
+		)
+		VALUES
+		  (
+		  #{post_id},
+		  #{postType_id},
+		  #{title},
+		  #{content},
+		  #{use},
+		  #{viewNumber},
+		  #{heat},
+		  #{downloadAttachment},
+		  #{releaseCVersion},
+		  #{restoreNumber},
+		  #{createTime},
+		  #{createUser},
+		  #{remarks}
+		  )
+	</insert>
+	<!-- 根据条件查询帖子数量 -->
+	<select id="findCount" resultType="int" parameterType="map">
+		select COUNT(POST_ID) from wdgw_post where 1=1
+		<if test="posttypeid != null and posttypeid != ''">
+			and POSTTYPE_ID = #{posttypeid}
+		</if>
+	</select>
+	
+	<!-- 根据帖子类型查询帖子 -->
+	<select id="findPostingList" resultType="com.flc.entity.Posting" parameterType="map">
+		SELECT
+		  `POST_ID`,
+		  `POSTTYPE_ID`,
+		  `TITLE`,
+		  `CONTENT`,
+		  `USER`,
+		  `user` as `use`,
+		  `VIEWNUMBER` as viewNumber,
+		  `HEAT`,
+		  `DOWNLOADATTACHMENT`,
+		  `RELEASEVERSION`,
+		  `RESTORENUMBER`,
+		  `CREATETIME` as createTime,
+		  TIMESTAMPDIFF(SECOND, post.`CREATETIME`,NOW()) AS timeDiff,
+		  (SELECT `NICKNAME` FROM `wdgw_wd_users` WHERE `WD_USERS_ID`=post.`USER`) AS nickname,
+		  `CREATEUSER`,
+		  `REMARKS`
+		FROM `wdgw`.`wdgw_post` as post
+		WHERE `POSTTYPE_ID` = #{posttypeid}
+		order by CREATETIME desc
+		<if test="pageEnd != null and pageEnd != ''">
+			limit #{pageFirst},#{pageEnd}
+		</if>
+		
+	</select>
+	
+	<!-- 更新帖子浏览次数和帖子热度 -->
+	<update id="updatePostH_R" parameterType="map">
+		UPDATE `wdgw`.`wdgw_post`
+		SET 
+		`HEAT` = `HEAT`+1,
+		`VIEWNUMBER` = `VIEWNUMBER`+1
+		WHERE `POST_ID` = #{post_id}
+	</update>
+	
+	<!-- 更新帖子回帖数 -->
+	<update id="updatePostRestorenumber" parameterType="string">
+		UPDATE `wdgw`.`wdgw_post`
+		SET `RESTORENUMBER` = `RESTORENUMBER`+1
+		WHERE `POST_ID` = #{post_id}
+	</update>
+	
+	<select id="findFloorInfo" resultType="com.flc.entity.Posting" parameterType="string" >
+	SELECT
+	  `POST_ID` as post_id,
+	  `POSTTYPE_ID` as postType_id,
+	  (SELECT `NAME` FROM `wdgw`.`wdgw_posttype` where `POSTTYPE_ID` = post.`POSTTYPE_ID`) as name,
+	  `TITLE` as title,
+	  `CONTENT` as content,
+	  `USER` AS userid,
+	  user.`NICKNAME` AS nickname,
+	  user.`PICTURE` AS picture,
+	  `VIEWNUMBER` as viewNumber,
+	  `HEAT` as heat,
+	  `DOWNLOADATTACHMENT` as downloadAttachment,
+	  `RELEASEVERSION` as releaseCVersion,
+	  `RESTORENUMBER` as restoreNumber,
+	  post.`CREATETIME` as createTime,
+	  post.`CREATEUSER` as createUser,
+	  post.`REMARKS` as remarks
+	FROM `wdgw`.`wdgw_post` AS post
+	INNER JOIN `wdgw_wd_users` AS `user`
+	ON post.USER = `WD_USERS_ID`
+	WHERE POST_ID = #{post_id}
+	</select>
+	
+	
+</mapper>

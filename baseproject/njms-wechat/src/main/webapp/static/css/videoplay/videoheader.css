@@ -1,0 +1,46 @@
+.header {
+	width: 100%;
+	background: #353535;
+}
+
+.header .container .header-top {
+	margin-top: 10px;
+}
+
+.header .container .header-top .logo {
+	width: 180px;
+	height: 70px;
+	background: url(../../img/index/logo.png) no-repeat center center;
+}
+
+.header .container .header-top .title {
+	line-height: 95px;
+	color: #DCDCDC;
+	font-size: 12px;
+	width: 7%;
+}
+
+.header .container .header-top .banner {
+	width: 150px;
+	height: 36px;
+	line-height: 36px;
+	border: 2px solid #757575;
+	border-radius: 18px;
+	margin-left: 790px;
+	margin-top: 25px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.header .container .header-top .banner .backclass {
+	text-decoration: none;
+	color: #DCDCDC;
+}
+
+.header .container .header-top .banner:hover .backclass {
+	color: #9FC105;
+}
+
+.header .container .header-top .banner span {
+	color: #808080;
+}

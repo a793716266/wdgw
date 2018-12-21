@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.MySubjectDao">
+	<select id="findMySubject" resultType="com.flc.entity.MySubject">
+		SELECT PICTURENAME,TITLE,URL,VIDEO_CODE,MAX(r.CREATETIME) AS `time`
+		FROM `wdgw_video` AS v
+		JOIN `wdgw_relation` AS r
+		ON v.VIDEO_ID = r.VIDEO_ID
+		WHERE 1=1
+		<if test="userId != null and userId != ''">
+			and  r.USER_ID = #{userId}
+		</if>
+		GROUP BY r.VIDEO_ID
+		ORDER BY `time` DESC
+		limit 0,3
+	</select>
+	
+	<!-- 添加我的课程 -->
+	<insert id="insertVideo" parameterType="com.flc.entity.VideoAndUser">
+		INSERT INTO `wdgw`.`wdgw_relation`
+            (`RELATION_ID`,
+             `USER_ID`,
+             `VIDEO_ID`,
+             `CREATETIME`)
+		VALUES (#{RELATION_ID},
+		        #{USER_ID},
+		        #{VIDEO_ID},
+		        #{CREATETIME})
+	</insert>
+	
+</mapper>

@@ -1,0 +1,29 @@
+.teacher-tab.student-tab {
+	width: 660px;
+}
+.teacher-tab.up.student-tab{
+	width:220px;
+}
+
+.teacher-tab.student-tab .teacher-tab-item {
+	width: 220px;
+	text-align: center;
+}
+
+.teacher-tab.student-tab .teacher-tab-item .tag-text {
+	margin: auto;
+}
+
+.section-teacher .stulist {
+	overflow: hidden;
+}
+
+.section-teacher .stulist li {
+	height: 380px;
+	float: left;
+}
+
+.stulist.stulist-web,
+.stulist.stulist-ui {
+	display: none;
+}

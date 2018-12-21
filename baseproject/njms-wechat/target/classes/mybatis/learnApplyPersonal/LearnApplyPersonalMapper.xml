@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flc.dao.LearnApplyPersonalDao">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		WDGW_LEARNAPPLYPERSONAL
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		LEARNTYPE,	
+		APPLYCLASS,	
+		APPLYPHONE,	
+		APPLYDATE,	
+		LEARNAPPLYPERSONAL_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{LEARNTYPE},	
+		#{APPLYCLASS},	
+		#{APPLYPHONE},	
+		#{APPLYDATE},	
+		#{LEARNAPPLYPERSONAL_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="saveApplyPersonal"  parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>	
+	
+	<!-- 验证学员手机号是否已经在申请名额内 -->
+	<select id="findApplyByPhone" parameterType="pd" resultType="int">
+		select 
+			count(applyphone) 
+		from 
+			<include refid="tableName"></include>
+		where 
+			applyphone = #{APPLYPHONE}
+	</select>
+</mapper>

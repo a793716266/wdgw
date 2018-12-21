@@ -1,0 +1,48 @@
+.section .container .section-module .points {
+	width: 200px;
+	margin-left: calc(50% - 100px);
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.section .container .section-module .points li {
+	width: 16px;
+	height: 16px;
+	background-color: rgba(0, 0, 0, .4);
+	border-radius: 50%;
+	margin-top: 6px;
+	cursor: pointer;
+	transition: all 0.1s;
+}
+
+.section .container .section-module .points li:hover ,
+.section .container .section-module .points .rotateIndex.active {
+	background-color: rgba(0, 128, 0, .4);
+}
+
+.section .container .section-module .points .rotateBtn {
+	width: 30px;
+	height: 30px;
+	display: block !important;
+	margin-top: 0px;
+}
+
+.section .container .section-module .points .btnPrev {
+	background: url(../../img/index/point-prev.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .points .btnPrev:hover {
+	background: url(../../img/index/point-prev-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .points .btnNext {
+	background: url(../../img/index/point-next.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.section .container .section-module .points .btnNext:hover {
+	background: url(../../img/index/point-next-hover.png) no-repeat center center;
+	background-size: 100% 100%;
+}

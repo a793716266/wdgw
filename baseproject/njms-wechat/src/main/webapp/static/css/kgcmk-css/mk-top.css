@@ -1,0 +1,14 @@
+			.section {
+				width: 100%;
+			}
+			.container {
+				width: 1200px;
+				margin: 0 auto;
+			}
+			.interval {
+				width: 1200px;
+				margin: 0 auto;
+				position: relative;
+				height: 150px;
+				border-radius: 3px;
+			}

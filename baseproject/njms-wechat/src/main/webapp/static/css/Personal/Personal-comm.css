@@ -1,0 +1,58 @@
+		*{
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+	       .per-left-ul li{
+		 		position: relative;
+				width: 175px;
+				border-bottom: 1px solid #FFFFFF;
+				height: 60px;
+				cursor: pointer;
+				background: #353535;
+			}
+			.per-zong{
+				width: 100%;
+				height: 790px;
+				background: #EFEFEF;
+				position: relative;
+			}
+			.per-left-ul li:hover{
+				background: #727071;
+				transition: all 0.2s;
+				border-bottom: 1px solid #9A9A9A;
+			}
+			.per-left-ul-li{
+		   	position: relative;
+		   	position: absolute;
+		   	margin: 0px auto;
+		    left: 45px;
+		    cursor: pointer;
+		    bottom: 19px;
+		   	width: 90px;
+		   	height: 22px;
+		   }
+		   .per-left-ul-li-img{
+		   	position: absolute;
+		   	width: 22px;
+		   	height: 22px;
+		   	cursor: pointer;
+		   	left: 0px;
+		   	background: url(../../img/left-img.png) no-repeat center center;
+		   }
+		   .per-left-ul-li-text{
+		   	position: absolute;
+		   	color: #FFFFFF;
+		   	right: 0px;
+		   	cursor: pointer;
+		   	text-align: center;
+		   	line-height: 22px;
+		   	height: 22px;
+		   }
+		   	.per-left{
+				position: absolute;
+				width: 175px;
+				height: 700px;
+				background: #353535;
+				float: left;
+			}
